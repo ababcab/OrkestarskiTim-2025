@@ -11,7 +11,7 @@ public class GridEnabler : MonoBehaviour
     {
         if (dropdown.GetComponent<GetValueFromDropdown>().selectedOption == "Sator")
         {
-            Debug.Log("debug: " + dropdown.GetComponent<GetValueFromDropdown>().selectedOption);
+            //Debug.Log("debug: " + dropdown.GetComponent<GetValueFromDropdown>().selectedOption);
             smallGrid.SetActive(true);
             bigGrid.SetActive(false);
         }

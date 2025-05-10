@@ -28,7 +28,7 @@ public class Tile : MonoBehaviour
 
     public void IndirectMouseExit()
     {
-        _OnMouseExit();
+        _OnMouseExit(); 
     }
 
     public void IndirectMouseOver()
