@@ -1,5 +1,3 @@
-using System;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Tile : MonoBehaviour
@@ -20,19 +18,30 @@ public class Tile : MonoBehaviour
         plata = GameObject.Find("Game Logic").GetComponent<Plata>();
     }
 
-    // Update is called once per frame
-    void Update()
+
+    public void IndirectMouseEnter()
     {
-        
+        _OnMouseEnter();
     }
 
-    private void OnMouseEnter()
+    public void IndirectMouseExit()
+    {
+        _OnMouseExit();
+    }
+
+    public void IndirectMouseOver()
+    {
+        _OnMouseOver();
+    }
+
+    
+    private void _OnMouseEnter()
     {
         //highlight
         this.gameObject.GetComponent<MeshRenderer>().enabled = true;
     }
 
-    private void OnMouseOver()
+    private void _OnMouseOver()
     {
         if (Input.GetMouseButtonDown(0) && zauzeto == false)
         {
@@ -48,8 +57,9 @@ public class Tile : MonoBehaviour
         }
     }
 
-    private void OnMouseExit()
+    private void _OnMouseExit()
     {
         this.gameObject.GetComponent<MeshRenderer>().enabled = false;
     }
+    
 }
