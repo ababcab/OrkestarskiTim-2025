@@ -1116,6 +1116,7 @@ MonoBehaviour:
   width: 10
   height: 10
   tilePrefab: {fileID: 6976559177305164855}
+  offsetAmount: 10
 --- !u!4 &892633935
 Transform:
   m_ObjectHideFlags: 0
@@ -1765,9 +1766,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa0dc24f0873bb0489c20125bf36620c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 10
-  height: 10
+  width: 6
+  height: 6
   tilePrefab: {fileID: 805784199}
+  offsetAmount: 15
 --- !u!1 &1740938199
 GameObject:
   m_ObjectHideFlags: 0
