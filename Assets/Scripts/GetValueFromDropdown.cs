@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class GetValueFromDropdown : MonoBehaviour
 {
@@ -8,10 +9,15 @@ public class GetValueFromDropdown : MonoBehaviour
 
     public string selectedOption;
 
-    public void GetDropdownValue()
+    void Start()
     {
-        int pickedEntryIndex = dropdown.value;
-        selectedOption = dropdown.options[pickedEntryIndex].text;
-        Debug.Log(selectedOption);
+        dropdown.onValueChanged.AddListener(OnDropdownValueChanged);
+        OnDropdownValueChanged(dropdown.value); // Initialize with current value
+    }
+
+    void OnDropdownValueChanged(int index)
+    {
+        selectedOption = dropdown.options[index].text;
+        Debug.Log("Dropdown changed to: " + selectedOption);
     }
 }

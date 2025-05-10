@@ -26,7 +26,7 @@ public class GridSystem : MonoBehaviour
         {
             for(int y = -height/2; y < height/2; y++)
             {
-                var spawnedTile = Instantiate(tilePrefab, new Vector3(x*offset, 0, y*offset), Quaternion.identity);
+                var spawnedTile = Instantiate(tilePrefab, new Vector3(x * offset, 0, y * offset), Quaternion.identity, gameObject.transform);
                 spawnedTile.name = $"Tile {x} {y}";
             }
         }
