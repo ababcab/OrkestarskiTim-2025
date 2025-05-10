@@ -10,6 +10,8 @@ public class Caci : MonoBehaviour
     [SerializeField]
     private float loyalty;
     [SerializeField]
+    public float bonusLoyalty;
+    [SerializeField]
     private float speed;
     [SerializeField]
     private Vector3 destination;
@@ -39,7 +41,7 @@ public class Caci : MonoBehaviour
     {
         if (studenti < SO.baseLoyalty)
             return false;
-        return Random.Range(0, 1f)*100f > loyalty;
+        return Random.Range(0, 1f)*100f > loyalty + bonusLoyalty;
     }
 
     public void NewDestination()

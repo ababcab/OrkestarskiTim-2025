@@ -2,12 +2,14 @@ using UnityEngine;
 
 public class EventTile : MonoBehaviour
 {
+    [Header("Prefabi")]
     public bool zauzeto = false;
     public GameObject rostilj_prefab;
     public GameObject zurka_prefab;
     public GameObject kiflice_stand_prefab;
     public GameObject himna_prefab;
     public GameObject fejkIndeksi_prefab;
+    public GameObject sator_prefab;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

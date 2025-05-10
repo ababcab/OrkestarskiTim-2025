@@ -6,6 +6,10 @@ using Random = UnityEngine.Random;
 
 public class GameLogic : MonoBehaviour
 {
+    [Header("Dependencies")]
+    [SerializeField]
+    private Plata plata;
+
     [Header("Caci")]
     [SerializeField]
     private Transform parentOfCaci;
@@ -50,9 +54,9 @@ public class GameLogic : MonoBehaviour
 
     IEnumerator Preparation()
     {
+        plata.AddMoney(100);
 
-
-        IncreaseCaci(10);
+        IncreaseCaci(1);
 
 
         yield return new WaitForEndOfFrame();
@@ -116,7 +120,7 @@ public class GameLogic : MonoBehaviour
     }
 
     int studentTickCount = 0;
-    int studentTickPass = 50;
+    int studentTickPass = 25;
     private void StudentTick()
     {
         if(studentTickCount != studentTickPass)
@@ -180,7 +184,7 @@ public class GameLogic : MonoBehaviour
 
     public void HandleMouseClick()
     {
-        IncreaseCaci(20);
+        //IncreaseCaci(20);
     }
 
 

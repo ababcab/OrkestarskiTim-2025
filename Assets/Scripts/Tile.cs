@@ -7,10 +7,17 @@ public class Tile : MonoBehaviour
     public bool zauzeto = false;
     public GameObject sator_prefab;
 
+    [SerializeField]
+    private Plata plata;
+
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         this.gameObject.GetComponent<MeshRenderer>().enabled = false;
+        Debug.Log($"bruh {GameObject.Find("Game Logic")}");
+        plata = GameObject.Find("Game Logic").GetComponent<Plata>();
     }
 
     // Update is called once per frame
@@ -29,7 +36,8 @@ public class Tile : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && zauzeto == false)
         {
-
+            if (!plata.EnoughMoney())
+                return;
             //placeSator();
             //lose money
             //+cacije
