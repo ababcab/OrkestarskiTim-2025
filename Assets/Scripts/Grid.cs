@@ -19,7 +19,8 @@ public class GridSystem : MonoBehaviour
 
     void GenerateGrid()
     {
-        var offset = 10;
+        var offset = this.transform.localScale.x * 10;
+        Debug.Log(this.transform.localScale.x);
 
         for (int x = -width/2; x < width/2; x++)
         {
