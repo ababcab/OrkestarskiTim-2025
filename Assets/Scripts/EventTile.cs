@@ -1,52 +1,169 @@
+using System.Collections.Generic;
+using NUnit.Framework;
+using UnityEditor;
 using UnityEngine;
 
-public class EventTile : MonoBehaviour
+public class EventTile : MonoBehaviour,IMouseSelectable
 {
     [Header("Prefabi")]
     public bool zauzeto = false;
+    public GameObject dropdown;
     public GameObject rostilj_prefab;
     public GameObject zurka_prefab;
-    public GameObject kiflice_stand_prefab;
+    public GameObject bakine_kiflice_prefab;
     public GameObject himna_prefab;
     public GameObject fejkIndeksi_prefab;
-    public GameObject sator_prefab;
+    public GameObject parent_grid;
+    public float boostToLoyalty;
+
+    #region Boxcast Params
+
+    private Vector3 halfExtents_rostilj = Vector3.one*4;
+    private int layerMask_boxCast;
+    List<Tile> hitTiles;
+    #endregion
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        hitTiles = new List<Tile>();
         this.gameObject.GetComponent<MeshRenderer>().enabled = false;
+        layerMask_boxCast = 1 << LayerMask.NameToLayer("Tile");
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 
-    private void OnMouseEnter()
+    public void IndirectMouseEnter()
     {
-        //highlight
-        this.gameObject.GetComponent<MeshRenderer>().enabled = true;
+        _OnMouseEnter();
     }
 
-    private void OnMouseOver()
+    public void IndirectMouseExit()
     {
-        if (Input.GetMouseButtonDown(0) && zauzeto == false)
+        _OnMouseExit();
+    }
+
+    public void IndirectMouseOver()
+    {
+        _OnMouseOver();
+    }
+
+
+
+
+    private void _OnMouseEnter()
+    {
+        string selected = dropdown.GetComponent<GetValueFromDropdown>().selectedOption;
+        if (selected == "Rostilj" ||
+            selected == "Zurka" ||
+            selected == "Kiflice")
         {
-
-            //placeSator();
-            //lose money
-            //+cacije
-            Debug.Log("place sator");
-            zauzeto = true;
-
-            Instantiate(sator_prefab, this.transform.position, Quaternion.identity);
+            this.gameObject.GetComponent<MeshRenderer>().enabled = true;
         }
     }
 
-    private void OnMouseExit()
+
+    private void _OnMouseOver()
     {
-        this.gameObject.GetComponent<MeshRenderer>().enabled = false;
+        if (Input.GetMouseButtonDown(0) && zauzeto == false)
+        {
+            string selected = dropdown.GetComponent<GetValueFromDropdown>().selectedOption;
+
+            if (selected == "Rostilj" && CastBox(4))
+            {
+                
+                Instantiate(rostilj_prefab, this.transform.position, Quaternion.identity);
+            }
+            else if (selected == "Zurka")
+            {
+                throw new System.Exception("Nisi implementovao BoxCast all");
+                Instantiate(zurka_prefab, this.transform.position, Quaternion.identity);
+            }
+            else if (selected == "Kiflice")
+            {
+                throw new System.Exception("Nisi implementovao BoxCast all");
+                Instantiate(bakine_kiflice_prefab, this.transform.position, Quaternion.identity);
+            }
+
+            //placeBigTile;
+            //lose money
+            //caciji podju do te aktivnosti
+            //smanji se sansa da budu uplaseni
+            Debug.Log("big tile placed");
+            zauzeto = true;
+        }
+    }
+
+    private void _OnMouseExit()
+    {
+        string selected = dropdown.GetComponent<GetValueFromDropdown>().selectedOption;
+        if (selected == "Rostilj" ||
+            selected == "Zurka" ||
+            selected == "Kiflice")
+        {
+            this.gameObject.GetComponent<MeshRenderer>().enabled = false;
+        }
+    }
+    
+
+    private bool CastBox(int needToHit)
+    {
+        bool canBuild = true;
+        RaycastHit[] array =
+            Physics.BoxCastAll(transform.position, halfExtents_rostilj,
+            Vector3.up,
+            Quaternion.identity,
+            0.1f,
+            layerMask: layerMask_boxCast);
+        Debug.DrawLine(transform.position, transform.position + Vector3.up * 20, Color.blue, Time.deltaTime * 160f);
+        int count = array.Length;
+        if (needToHit != count)
+        {
+            Debug.Log($"Didnt hit enought (neededto){needToHit} vs {count}");
+            return false;
+        }
+        Debug.Log($"Hit {count}");
+
+        for (int i=0;i<count;i++)
+        {
+            Tile tile = array[i].collider.gameObject.GetComponent<Tile>();
+            Debug.DrawLine(array[i].collider.transform.position, array[i].collider.transform.position + Vector3.up * 20, Color.magenta, Time.deltaTime * 160f);
+
+            Debug.Log($"{tile.gameObject.name} je slobodan {tile.zauzeto == false}");
+            if (tile.zauzeto)
+                canBuild = false;
+            else
+                hitTiles.Add(tile);
+        }
+        if(canBuild)
+            for (int i = 0; i < count; i++)
+            {
+                hitTiles[i].zauzeto = true;
+            }
+        hitTiles.Clear();
+        return canBuild;
+    }
+
+
+
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer.ToString() == "Caci")
+        {
+            Caci caci = other.gameObject.GetComponent<Caci>();
+            if (caci != null)
+            {
+                caci.bonusLoyalty += boostToLoyalty;
+                Debug.Log("caci boost to loyalty: " + boostToLoyalty);
+            }
+        }
     }
 }
 

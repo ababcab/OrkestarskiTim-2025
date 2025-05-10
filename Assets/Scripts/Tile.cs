@@ -1,11 +1,11 @@
-using System;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class Tile : MonoBehaviour
+public class Tile : MonoBehaviour, IMouseSelectable
 {
     public bool zauzeto = false;
+    public GameObject dropdown;
     public GameObject sator_prefab;
+    public GameObject parent_grid;
 
     [SerializeField]
     private Plata plata;
@@ -20,36 +20,59 @@ public class Tile : MonoBehaviour
         plata = GameObject.Find("Game Logic").GetComponent<Plata>();
     }
 
-    // Update is called once per frame
-    void Update()
+
+    public void IndirectMouseEnter()
     {
-        
+        _OnMouseEnter();
     }
 
-    private void OnMouseEnter()
+    public void IndirectMouseExit()
+    {
+        _OnMouseExit();
+    }
+
+    public void IndirectMouseOver()
+    {
+        _OnMouseOver();
+    }
+
+    
+    private void _OnMouseEnter()
     {
         //highlight
-        this.gameObject.GetComponent<MeshRenderer>().enabled = true;
-    }
-
-    private void OnMouseOver()
-    {
-        if (Input.GetMouseButtonDown(0) && zauzeto == false)
+        if (dropdown.GetComponent<GetValueFromDropdown>().selectedOption == "Sator")
         {
-            if (!plata.EnoughMoney())
-                return;
-            //placeSator();
-            //lose money
-            //+cacije
-            Debug.Log("place sator");
-            zauzeto = true;
-
-            Instantiate(sator_prefab, this.transform.position, Quaternion.identity);
+            this.gameObject.GetComponent<MeshRenderer>().enabled = true;
         }
     }
 
-    private void OnMouseExit()
+    private void _OnMouseOver()
     {
-        this.gameObject.GetComponent<MeshRenderer>().enabled = false;
+        if (Input.GetMouseButtonDown(0) && zauzeto == false)
+        {
+
+            if (dropdown.GetComponent<GetValueFromDropdown>().selectedOption == "Sator")
+            {
+            if (!plata.EnoughMoney())
+                return;
+                //placeSator();
+                //lose money
+                //+cacije
+                Debug.Log("place sator");
+                zauzeto = true;
+
+                GameObject new_sator = Instantiate(sator_prefab, this.transform.position, Quaternion.identity);
+                new_sator.GetComponent<Placement>().parentTile = this;
+            } 
+        }
     }
+
+    private void _OnMouseExit()
+    {
+        if (dropdown.GetComponent<GetValueFromDropdown>().selectedOption == "Sator")
+        {
+            this.gameObject.GetComponent<MeshRenderer>().enabled = false;
+        }
+    }
+    
 }
