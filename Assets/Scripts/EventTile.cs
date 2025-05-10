@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 
 public class EventTile : MonoBehaviour
@@ -11,6 +12,7 @@ public class EventTile : MonoBehaviour
     public GameObject himna_prefab;
     public GameObject fejkIndeksi_prefab;
     public GameObject parent_grid;
+    public float boostToLoyalty;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -67,6 +69,19 @@ public class EventTile : MonoBehaviour
             dropdown.GetComponent<GetValueFromDropdown>().selectedOption == "Kiflice")
         {
             this.gameObject.GetComponent<MeshRenderer>().enabled = false;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer.ToString() == "Caci")
+        {
+            Caci caci = other.gameObject.GetComponent<Caci>();
+            if (caci != null)
+            {
+                caci.bonusLoyalty += boostToLoyalty;
+                Debug.Log("caci boost to loyalty: " + boostToLoyalty);
+            }
         }
     }
 }

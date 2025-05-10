@@ -1,7 +1,7 @@
 using System.IO.IsolatedStorage;
 using UnityEngine;
 
-public class Sator : MonoBehaviour
+public class Placement : MonoBehaviour
 {
     public Tile parentTile;
 
@@ -31,7 +31,6 @@ public class Sator : MonoBehaviour
         {
             isMoving = false;
         }
-        
     }
 
     private void OnMouseOver()
@@ -47,6 +46,32 @@ public class Sator : MonoBehaviour
         if (Input.GetMouseButtonDown(2))
         {
             isMoving = true;
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Tile")
+        {
+            collision.gameObject.GetComponent<Tile>().zauzeto = true;
+        }
+
+        if (collision.gameObject.tag == "EventTile")
+        {
+            collision.gameObject.GetComponent<EventTile>().zauzeto = true;
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.tag == "Tile")
+        {
+            collision.gameObject.GetComponent<Tile>().zauzeto = false;
+        }
+
+        if (collision.gameObject.tag == "EventTile")
+        {
+            collision.gameObject.GetComponent<EventTile>().zauzeto = false;
         }
     }
 }
