@@ -42,7 +42,8 @@ public class Tile : MonoBehaviour
                 Debug.Log("place sator");
                 zauzeto = true;
 
-                Instantiate(sator_prefab, this.transform.position, Quaternion.identity);
+                GameObject new_sator = Instantiate(sator_prefab, this.transform.position, Quaternion.identity);
+                new_sator.GetComponent<Sator>().parentTile = this;
             } 
         }
     }
