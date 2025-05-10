@@ -13,6 +13,8 @@ public class Caci : MonoBehaviour
     private float speed;
     [SerializeField]
     private Vector3 destination;
+    [SerializeField]
+    private float destinationOffset;
 
 
     public void SetSO(CaciScrObj c)
@@ -42,7 +44,7 @@ public class Caci : MonoBehaviour
 
     public void NewDestination()
     {
-        destination = new Vector3(transform.position.x + Random.Range(-4f, 4), 0, transform.position.z + Random.Range(-4f, 4));
+        destination = new Vector3(transform.position.x + Random.Range(-destinationOffset, destinationOffset), 0, transform.position.z + Random.Range(-4f, 4));
     }
 
     public void GoToDestination(float deltaTime)
