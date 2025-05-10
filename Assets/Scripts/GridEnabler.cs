@@ -6,13 +6,7 @@ public class GridEnabler : MonoBehaviour
     public GameObject dropdown;
     public GameObject smallGrid;
     public GameObject bigGrid;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
     void Update()
     {
         if (dropdown.GetComponent<GetValueFromDropdown>().selectedOption == "Sator")

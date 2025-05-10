@@ -48,30 +48,4 @@ public class Placement : MonoBehaviour
             isMoving = true;
         }
     }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "Tile")
-        {
-            collision.gameObject.GetComponent<Tile>().zauzeto = true;
-        }
-
-        if (collision.gameObject.tag == "EventTile")
-        {
-            collision.gameObject.GetComponent<EventTile>().zauzeto = true;
-        }
-    }
-
-    private void OnCollisionExit(Collision collision)
-    {
-        if (collision.gameObject.tag == "Tile")
-        {
-            collision.gameObject.GetComponent<Tile>().zauzeto = false;
-        }
-
-        if (collision.gameObject.tag == "EventTile")
-        {
-            collision.gameObject.GetComponent<EventTile>().zauzeto = false;
-        }
-    }
 }
