@@ -27,7 +27,9 @@ public class EventTile : MonoBehaviour
     {
         if (dropdown.GetComponent<GetValueFromDropdown>().selectedOption == "Rostilj" ||
             dropdown.GetComponent<GetValueFromDropdown>().selectedOption == "Zurka" ||
-            dropdown.GetComponent<GetValueFromDropdown>().selectedOption == "Kiflice")
+            dropdown.GetComponent<GetValueFromDropdown>().selectedOption == "Kiflice" ||
+            dropdown.GetComponent<GetValueFromDropdown>().selectedOption == "Himna" ||
+            dropdown.GetComponent<GetValueFromDropdown>().selectedOption == "Fejk indeksi")
         {
             this.gameObject.GetComponent<MeshRenderer>().enabled = true;
         }
@@ -49,6 +51,14 @@ public class EventTile : MonoBehaviour
             {
                 Instantiate(bakine_kiflice_prefab, this.transform.position, Quaternion.identity);
             }
+            else if (dropdown.GetComponent<GetValueFromDropdown>().selectedOption == "Himna")
+            {
+                Instantiate(himna_prefab, this.transform.position, Quaternion.identity);
+            }
+            else if (dropdown.GetComponent<GetValueFromDropdown>().selectedOption == "Fejk indeksi")
+            {
+                Instantiate(fejkIndeksi_prefab, this.transform.position, Quaternion.identity);
+            }
 
             //placeBigTile;
             //lose money
@@ -63,7 +73,9 @@ public class EventTile : MonoBehaviour
     {
         if (dropdown.GetComponent<GetValueFromDropdown>().selectedOption == "Rostilj" ||
             dropdown.GetComponent<GetValueFromDropdown>().selectedOption == "Zurka" ||
-            dropdown.GetComponent<GetValueFromDropdown>().selectedOption == "Kiflice")
+            dropdown.GetComponent<GetValueFromDropdown>().selectedOption == "Kiflice" ||
+            dropdown.GetComponent<GetValueFromDropdown>().selectedOption == "Himna" ||
+            dropdown.GetComponent<GetValueFromDropdown>().selectedOption == "Fejk indeksi")
         {
             this.gameObject.GetComponent<MeshRenderer>().enabled = false;
         }

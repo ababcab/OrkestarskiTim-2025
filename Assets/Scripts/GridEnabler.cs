@@ -23,7 +23,9 @@ public class GridEnabler : MonoBehaviour
         }
         else if (dropdown.GetComponent<GetValueFromDropdown>().selectedOption == "Rostilj" ||
             dropdown.GetComponent<GetValueFromDropdown>().selectedOption == "Zurka" ||
-            dropdown.GetComponent<GetValueFromDropdown>().selectedOption == "Kiflice")
+            dropdown.GetComponent<GetValueFromDropdown>().selectedOption == "Kiflice" ||
+            dropdown.GetComponent<GetValueFromDropdown>().selectedOption == "Himna" ||
+            dropdown.GetComponent<GetValueFromDropdown>().selectedOption == "Fejk indeksi")
         {
             bigGrid.SetActive(true);
             smallGrid.SetActive(false);
