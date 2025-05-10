@@ -3,7 +3,7 @@ using UnityEngine;
 public class MouseRaycaster : MonoBehaviour
 {
     private float distance = 400f;
-    private Tile hitTile = null;
+    private IMouseSelectable hitTile = null;
 
     private int layerMask;
     private void Start()
@@ -17,15 +17,13 @@ public class MouseRaycaster : MonoBehaviour
     private void Update()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        /*if (Physics.Raycast(ray, out RaycastHit hitShouldntHit, distance, ~layerMask))
-        {
-            Debug.Log($"hit something i shouldn't {hitShouldntHit.collider.gameObject.name}");
-        }*/
+
         if (Physics.Raycast(ray, out RaycastHit hit, distance, layerMask))
         {
             //Debug.DrawLine(ray.origin, ray.origin + distance * ray.direction,Color.blue,Time.deltaTime*40f);
             //Debug.Log($"hit something {hit.collider.gameObject.name}");
-            Tile tile = hit.collider.gameObject.GetComponent<Tile>();
+
+            IMouseSelectable tile = hit.collider.gameObject.GetComponent<IMouseSelectable>();
             if(tile == null)
             {
                 if(hitTile != null)

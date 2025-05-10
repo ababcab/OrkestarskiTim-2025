@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EventTile : MonoBehaviour
+public class EventTile : MonoBehaviour,IMouseSelectable
 {
     [Header("Prefabi")]
     public bool zauzeto = false;
@@ -24,29 +24,49 @@ public class EventTile : MonoBehaviour
         
     }
 
-    private void OnMouseEnter()
+    public void IndirectMouseEnter()
     {
-        if (dropdown.GetComponent<GetValueFromDropdown>().selectedOption == "Rostilj" ||
-            dropdown.GetComponent<GetValueFromDropdown>().selectedOption == "Zurka" ||
-            dropdown.GetComponent<GetValueFromDropdown>().selectedOption == "Kiflice")
+        _OnMouseEnter();
+    }
+
+    public void IndirectMouseExit()
+    {
+        _OnMouseExit();
+    }
+
+    public void IndirectMouseOver()
+    {
+        _OnMouseOver();
+    }
+
+
+
+
+    private void _OnMouseEnter()
+    {
+        string selected = dropdown.GetComponent<GetValueFromDropdown>().selectedOption;
+        if (selected == "Rostilj" ||
+            selected == "Zurka" ||
+            selected == "Kiflice")
         {
             this.gameObject.GetComponent<MeshRenderer>().enabled = true;
         }
     }
 
-    private void OnMouseOver()
+    private void _OnMouseOver()
     {
         if (Input.GetMouseButtonDown(0) && zauzeto == false)
         {
-            if (dropdown.GetComponent<GetValueFromDropdown>().selectedOption == "Rostilj")
+            string selected = dropdown.GetComponent<GetValueFromDropdown>().selectedOption;
+            if (selected == "Rostilj")
             {
                 Instantiate(rostilj_prefab, this.transform.position, Quaternion.identity);
             }
-            else if (dropdown.GetComponent<GetValueFromDropdown>().selectedOption == "Zurka")
+            else if (selected == "Zurka")
             {
                 Instantiate(zurka_prefab, this.transform.position, Quaternion.identity);
             }
-            else if (dropdown.GetComponent<GetValueFromDropdown>().selectedOption == "Kiflice")
+            else if (selected == "Kiflice")
             {
                 Instantiate(bakine_kiflice_prefab, this.transform.position, Quaternion.identity);
             }
@@ -60,11 +80,12 @@ public class EventTile : MonoBehaviour
         }
     }
 
-    private void OnMouseExit()
+    private void _OnMouseExit()
     {
-        if (dropdown.GetComponent<GetValueFromDropdown>().selectedOption == "Rostilj" ||
-            dropdown.GetComponent<GetValueFromDropdown>().selectedOption == "Zurka" ||
-            dropdown.GetComponent<GetValueFromDropdown>().selectedOption == "Kiflice")
+        string selected = dropdown.GetComponent<GetValueFromDropdown>().selectedOption;
+        if (selected == "Rostilj" ||
+            selected == "Zurka" ||
+            selected == "Kiflice")
         {
             this.gameObject.GetComponent<MeshRenderer>().enabled = false;
         }
