@@ -1,12 +1,27 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class GameLogic : MonoBehaviour
 {
     [Header("Caci")]
     [SerializeField]
-    private int caci_count = 0;
+    private Transform parentOfCaci;
+    [SerializeField]
+    private ObjectPool caciPool;
+    [SerializeField]
+    private List<Caci> caci;
+    [SerializeField]
+    private List<CaciScrObj> caciScrObjs;
+
+    [Header("Studenti")]
+    [SerializeField]
+    private int studenti = 0;
+    [Header("Round params")]
+    [SerializeField]
+    private float tickRate = 0.1f;
     [SerializeField]
     private float preparationTime = 10;
     [SerializeField]
@@ -18,8 +33,9 @@ public class GameLogic : MonoBehaviour
 
     private Coroutine currentCoroutine = null;
 
-    private void Awake()
+    private void Start()
     {
+        caci = new List<Caci>();
         StartPreparation();
     }
 
@@ -34,12 +50,17 @@ public class GameLogic : MonoBehaviour
 
     IEnumerator Preparation()
     {
+
+
+        IncreaseCaci(10);
+
+
         yield return new WaitForEndOfFrame();
         timeLeft = preparationTime;
         while (timeLeft > 0)
         {
-            yield return new WaitForSeconds(0.1f);
-            timeLeft -= 0.1f;
+            yield return new WaitForSeconds(tickRate);
+            timeLeft -= tickRate;
         }
         timeLeft = 0;
         currentCoroutine = null;
@@ -59,27 +80,29 @@ public class GameLogic : MonoBehaviour
 
     IEnumerator Protest()
     {
-        //Init system logic
 
-        caci_count += 100;
-        yield return new WaitForSeconds(0.1f);
+        studenti = Random.Range(0, 20);
+
+        yield return new WaitForSeconds(tickRate);
         timeLeft = protestTime;
         while(timeLeft > 0)
         {
-            //StudentTick();
-            caci_count--;
-            if (caci_count != 0)
-                yield return new WaitForSeconds(0.1f);
+            StudentTick();
+            CaciDestinationTick();
+
+            if (caci.Count != 0)
+                yield return new WaitForSeconds(tickRate);
             else
             {
                 GameOver();
                 yield break;
-                Debug.Log($"Shouldnt happen");
+
             }
             
-            timeLeft -= 0.1f;
+            timeLeft -= tickRate;
         }
 
+        studentTickCount = 0;
         timeLeft = 0;
         currentCoroutine = null;
         DetermineNewEvent();
@@ -92,16 +115,45 @@ public class GameLogic : MonoBehaviour
         Debug.Log("Game end");
     }
 
-    /*
-    void StudentTick()
+    int studentTickCount = 0;
+    int studentTickPass = 50;
+    private void StudentTick()
     {
-        foreach (Caci item in caci)
+        if(studentTickCount != studentTickPass)
         {
-
-            item.affected(currentStudentScrObj.loyaltyImpact);
+            studentTickCount++;
+            return;
         }
-    }*/
+        studentTickCount = 0;
+        int before = caci.Count;
+        int n = caci.Count;
+        Caci item = null;
+        for (int i=0;i<n;i++)
+        {
+            //Debug.Log($"{caci.Count} {n}");
+            item = caci[i];
+            if(item.Affect(studenti))
+            {
+                caci.RemoveAt(i);
+                caciPool.ReturnObject(item.gameObject);
+                n--;
+                i--;
+            }
+        }
 
+        Debug.Log($"Student Tick: Deleted Caci {-caci.Count+before}");
+    }
+
+    private void CaciDestinationTick()
+    {
+        int n = caci.Count;
+        Caci item = null;
+        for (int i = 0; i < n; i++)
+        {
+            item = caci[i];
+            item.GoToDestination(tickRate);
+        }
+    }
 
     private void DetermineNewEvent()
     {
@@ -115,7 +167,14 @@ public class GameLogic : MonoBehaviour
 
     private void IncreaseCaci(int amount)
     {
-        caci_count += amount;
+        for(int i=0;i<amount;i++)
+        {
+            //Caci @new = new Caci();
+            Caci @new = caciPool.GetObject().GetComponent<Caci>();
+            @new.SetSO(caciScrObjs[0]);
+            @new.SetUp(parentOfCaci);
+            caci.Add(@new);
+        }
     }
 
 
