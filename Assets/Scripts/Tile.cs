@@ -3,7 +3,9 @@ using UnityEngine;
 public class Tile : MonoBehaviour
 {
     public bool zauzeto = false;
+    public GameObject dropdown;
     public GameObject sator_prefab;
+    public GameObject parent_grid;
 
     [SerializeField]
     private Plata plata;
@@ -38,28 +40,39 @@ public class Tile : MonoBehaviour
     private void _OnMouseEnter()
     {
         //highlight
-        this.gameObject.GetComponent<MeshRenderer>().enabled = true;
+        if (dropdown.GetComponent<GetValueFromDropdown>().selectedOption == "Sator")
+        {
+            this.gameObject.GetComponent<MeshRenderer>().enabled = true;
+        }
     }
 
     private void _OnMouseOver()
     {
         if (Input.GetMouseButtonDown(0) && zauzeto == false)
         {
+            
+            if (dropdown.GetComponent<GetValueFromDropdown>().selectedOption == "Sator")
+            {
             if (!plata.EnoughMoney())
                 return;
-            //placeSator();
-            //lose money
-            //+cacije
-            Debug.Log("place sator");
-            zauzeto = true;
+                //placeSator();
+                //lose money
+                //+cacije
+                Debug.Log("place sator");
+                zauzeto = true;
 
-            Instantiate(sator_prefab, this.transform.position, Quaternion.identity);
+                GameObject new_sator = Instantiate(sator_prefab, this.transform.position, Quaternion.identity);
+                new_sator.GetComponent<Sator>().parentTile = this;
+            } 
         }
     }
 
     private void _OnMouseExit()
     {
-        this.gameObject.GetComponent<MeshRenderer>().enabled = false;
+        if (dropdown.GetComponent<GetValueFromDropdown>().selectedOption == "Sator")
+        {
+            this.gameObject.GetComponent<MeshRenderer>().enabled = false;
+        }
     }
     
 }
