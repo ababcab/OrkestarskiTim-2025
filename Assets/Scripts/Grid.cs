@@ -7,6 +7,8 @@ public class GridSystem : MonoBehaviour
     public int height;
     public GameObject tilePrefab;
     public int offsetAmount;
+    public float posX;
+    public float posY;
 
     private void Awake()
     {
@@ -27,7 +29,7 @@ public class GridSystem : MonoBehaviour
         {
             for(int y = -height/2; y < height/2; y++)
             {
-                var spawnedTile = Instantiate(tilePrefab, new Vector3(x * offset, 0, y * offset), Quaternion.identity, gameObject.transform);
+                var spawnedTile = Instantiate(tilePrefab, new Vector3(posX * offset, 0, posY * offset), Quaternion.identity, gameObject.transform);
                 spawnedTile.name = $"Tile {x} {y}";
             }
         }
