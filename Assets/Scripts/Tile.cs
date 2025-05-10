@@ -50,7 +50,7 @@ public class Tile : MonoBehaviour, IMouseSelectable
     {
         if (Input.GetMouseButtonDown(0) && zauzeto == false)
         {
-            
+
             if (dropdown.GetComponent<GetValueFromDropdown>().selectedOption == "Sator")
             {
             if (!plata.EnoughMoney())
