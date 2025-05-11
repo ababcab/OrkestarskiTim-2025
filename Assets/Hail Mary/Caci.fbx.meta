@@ -31,7 +31,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Caci Idle
+      name: Caci Idle aaaa
       takeName: Caci Idle
       internalID: -8545149612169947666
       firstFrame: 0
@@ -60,7 +60,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: caci run
+      name: run aaaaaa caci
       takeName: caci run
       internalID: -3965596652593688572
       firstFrame: 0
