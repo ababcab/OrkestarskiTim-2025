@@ -13,7 +13,6 @@ public class Plata : MonoBehaviour
         money += am;
     }
 
-
     public bool EnoughMoney()
     {
         if(money > 10)

@@ -26,7 +26,6 @@ public class Placement : MonoBehaviour
                 transform.position = hit.collider.transform.position;
             }
         }
-
         if (isMoving && Input.GetMouseButtonUp(2))
         {
             isMoving = false;

@@ -9,16 +9,9 @@ public class Soundscape : MonoBehaviour
     [Range(0, 1f)]
     public float volModifier = 1f;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         PlaySound(volModifier, ambience);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     private void PlaySound(float volModifier, AudioClip myClip)

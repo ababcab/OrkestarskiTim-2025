@@ -16,16 +16,12 @@ public class Tile : MonoBehaviour, IMouseSelectable
     [Range(0f, 1f)]
     public float volModifier;
 
-
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         this.gameObject.GetComponent<MeshRenderer>().enabled = false;
         Debug.Log($"bruh {GameObject.Find("Game Logic")}");
         plata = GameObject.Find("Game Logic").GetComponent<Plata>();
     }
-
 
     public void IndirectMouseEnter()
     {
@@ -42,7 +38,6 @@ public class Tile : MonoBehaviour, IMouseSelectable
         _OnMouseOver();
     }
 
-    
     private void _OnMouseEnter()
     {
         //highlight

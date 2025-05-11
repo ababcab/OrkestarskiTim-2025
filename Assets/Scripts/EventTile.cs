@@ -35,8 +35,6 @@ public class EventTile : MonoBehaviour,IMouseSelectable
     List<Tile> hitTiles;
     #endregion
 
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         hitTiles = new List<Tile>();
@@ -44,7 +42,6 @@ public class EventTile : MonoBehaviour,IMouseSelectable
         layerMask_boxCast = 1 << LayerMask.NameToLayer("Tile");
     }
 
-    // Update is called once per frame
     void Update()
     {
         
@@ -65,9 +62,6 @@ public class EventTile : MonoBehaviour,IMouseSelectable
         _OnMouseOver();
     }
 
-
-
-
     private void _OnMouseEnter()
     {
         string selected = dropdown.GetComponent<GetValueFromDropdown>().selectedOption;
@@ -78,7 +72,6 @@ public class EventTile : MonoBehaviour,IMouseSelectable
             this.gameObject.GetComponent<MeshRenderer>().enabled = true;
         }
     }
-
 
     private void _OnMouseOver()
     {
@@ -124,7 +117,6 @@ public class EventTile : MonoBehaviour,IMouseSelectable
         }
     }
     
-
     private bool CastBox(int needToHit)
     {
         bool canBuild = true;
