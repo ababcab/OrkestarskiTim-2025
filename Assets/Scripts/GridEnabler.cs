@@ -20,7 +20,7 @@ public class GridEnabler : MonoBehaviour
             dropdown.GetComponent<GetValueFromDropdown>().selectedOption == "Kiflice")
         {
             bigGrid.SetActive(true);
-            smallGrid.SetActive(false);
+           // smallGrid.SetActive(false);
         }
     }
 }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Tile : MonoBehaviour
+public class Tile : MonoBehaviour, IMouseSelectable
 {
     public bool zauzeto = false;
     public GameObject dropdown;
@@ -50,7 +50,7 @@ public class Tile : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && zauzeto == false)
         {
-            
+
             if (dropdown.GetComponent<GetValueFromDropdown>().selectedOption == "Sator")
             {
             if (!plata.EnoughMoney())
