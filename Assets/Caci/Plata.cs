@@ -4,7 +4,7 @@ using UnityEngine;
 public class Plata : MonoBehaviour
 {
     [SerializeField]
-    private int money=0;
+    private int money = 0;
     [SerializeField]
     private TextMeshProUGUI money_text;
 
@@ -13,11 +13,11 @@ public class Plata : MonoBehaviour
         money += am;
     }
 
-    public bool EnoughMoney()
+    public bool EnoughMoney(int cost)
     {
-        if(money > 10)
+        if(money >= cost)
         {
-            money -= 10;
+            money -= cost;
             return true;
         }
         return false;

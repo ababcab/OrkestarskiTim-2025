@@ -21,7 +21,8 @@ public class Caci : MonoBehaviour, IPoolableObject
     private Vector3 destination;
     [SerializeField]
     private float destinationOffset;
-
+    [SerializeField]
+    private Animator animator; 
     [Header("Caci Agent")]
     [SerializeField]
     private NavMeshAgent agent;

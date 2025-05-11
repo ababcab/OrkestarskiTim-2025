@@ -9,12 +9,12 @@ public class EventTile : MonoBehaviour,IMouseSelectable
     public bool zauzeto = false;
     public GameObject dropdown;
     public GameObject rostilj_prefab;
-    public GameObject zurka_prefab;
     public GameObject bakine_kiflice_prefab;
-    public GameObject himna_prefab;
     public GameObject fejkIndeksi_prefab;
     public GameObject parent_grid;
     public float boostToLoyalty;
+    [SerializeField]
+    private Plata plata;
     [Header("Time")]
     [SerializeField]
     private float eventDuration;
@@ -22,15 +22,12 @@ public class EventTile : MonoBehaviour,IMouseSelectable
 
     public AudioSource soundSource;
     public float masterSoundVolume = 100;
-    public AudioClip rostiljClip;
+    public AudioClip placementClip;
     [Range(0f, 1f)]
     public float volModifier1;
     public AudioClip rostiljSizzle;
     [Range(0f, 1f)]
     public float volModifier2;
-    public AudioClip zurkaClip;
-    [Range(0f, 1f)]
-    public float volModifier3;
 
     #region Boxcast Params
 
@@ -44,6 +41,7 @@ public class EventTile : MonoBehaviour,IMouseSelectable
         hitTiles = new List<Tile>();
         this.gameObject.GetComponent<MeshRenderer>().enabled = false;
         layerMask_boxCast = 1 << LayerMask.NameToLayer("Tile");
+        plata = GameObject.Find("Game Logic").GetComponent<Plata>();
     }
 
     public void IndirectMouseEnter()
@@ -76,15 +74,11 @@ public class EventTile : MonoBehaviour,IMouseSelectable
     {
         string selected = dropdown.GetComponent<GetValueFromDropdown>().selectedOption;
         if (selected == "Rostilj" ||
-            selected == "Zurka" ||
             selected == "Kiflice" ||
-            selected == "Himna" ||
             selected == "Fejk indeksi")
 
         if (dropdown.GetComponent<GetValueFromDropdown>().selectedOption == "Rostilj" ||
-            dropdown.GetComponent<GetValueFromDropdown>().selectedOption == "Zurka" ||
             dropdown.GetComponent<GetValueFromDropdown>().selectedOption == "Kiflice" ||
-            dropdown.GetComponent<GetValueFromDropdown>().selectedOption == "Himna" ||
             dropdown.GetComponent<GetValueFromDropdown>().selectedOption == "Fejk indeksi")
         {
             this.gameObject.GetComponent<MeshRenderer>().enabled = true;
@@ -107,32 +101,25 @@ public class EventTile : MonoBehaviour,IMouseSelectable
 
             if (selected == "Rostilj" && CastBox_Occupy(halfExtents_rostilj,4))
             {
-                placedObject=Instantiate(rostilj_prefab, this.transform.position, Quaternion.identity);
-                PlaySound(volModifier1, rostiljClip, 0);
+                if (!plata.EnoughMoney(25))
+                    return false;
+                placedObject =Instantiate(rostilj_prefab, this.transform.position, Quaternion.identity);
+                PlaySound(volModifier1, placementClip, 0);
                 PlaySound(volModifier2, rostiljSizzle, 5);
                 Debug.Log($"I placed {placedObject.name}");
                 StartCoroutine(DeleteAfter(eventDuration, halfExtents_rostilj, 4));
             }
-            else if (selected == "Zurka")
+            else if (selected == "Kiflice" && CastBox_Occupy(halfExtents_rostilj, 4))
             {
-                throw new System.Exception("Nisi implementovao BoxCast all");
-                Instantiate(zurka_prefab, this.transform.position, Quaternion.identity);
-                //PlaySound(volModifier3, zurkaClip);
+                placedObject=Instantiate(bakine_kiflice_prefab, this.transform.position, Quaternion.identity);
+                PlaySound(volModifier1, placementClip, 0);
+                StartCoroutine(DeleteAfter(eventDuration, halfExtents_rostilj, 4));
             }
-            else if (selected == "Kiflice")
-            {
-                throw new System.Exception("Nisi implementovao BoxCast all");
-                Instantiate(bakine_kiflice_prefab, this.transform.position, Quaternion.identity);
-            }
-            else if (selected == "Himna")
+            else if (selected == "Fejk indeksi" && CastBox_Occupy(halfExtents_rostilj, 4))
             {   
-                throw new System.Exception("Nisi implementovao BoxCast all");
-                Instantiate(himna_prefab, this.transform.position, Quaternion.identity);
-            }
-            else if (selected == "Fejk indeksi")
-            {   
-                throw new System.Exception("Nisi implementovao BoxCast all");
-                Instantiate(fejkIndeksi_prefab, this.transform.position, Quaternion.identity);
+                placedObject = Instantiate(fejkIndeksi_prefab, this.transform.position, Quaternion.identity);
+                PlaySound(volModifier1, placementClip, 0);
+                StartCoroutine(DeleteAfter(eventDuration, halfExtents_rostilj, 4));
             }
 
             //placeBigTile;
