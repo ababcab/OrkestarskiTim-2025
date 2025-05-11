@@ -11,9 +11,21 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Main.unity
     guid: 6a26f170fde363d4f903b785c1130a2b
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/ObservationRoom.unity
     guid: 3e3bfb5c28477164794056f971169a8f
+  - enabled: 0
+    path: Assets/Scenes/SS1.unity
+    guid: b7ee65bd106a8ac4d87c0fe95d949613
+  - enabled: 0
+    path: Assets/Scenes/M1.unity
+    guid: 4e70e84b0b499ba408ffe802a0c45941
+  - enabled: 1
+    path: Assets/Scenes/LevelLoader.unity
+    guid: 1ece431f73ed32a478b7d82a5da9192b
+  - enabled: 0
+    path: Assets/Scenes/OBS1.unity
+    guid: 540e8a6026bd0ac4ca865b6583ad6842
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

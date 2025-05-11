@@ -7,8 +7,8 @@ public class LevelLoader : MonoBehaviour
 
     void Start()
     {
-        SceneManager.LoadScene("Scenes/Main", LoadSceneMode.Additive); // Main
-        SceneManager.LoadScene("Scenes/SampleScene", LoadSceneMode.Additive); // SampleScene
-        SceneManager.LoadScene("Scenes/ObservationRoom", LoadSceneMode.Additive); // ObservationRoom
+        SceneManager.LoadScene("Scenes/M1", LoadSceneMode.Additive); // Main
+        SceneManager.LoadScene("Scenes/SS1", LoadSceneMode.Additive); // SampleScene
+        SceneManager.LoadScene("Scenes/OBS1", LoadSceneMode.Additive); // ObservationRoom
     }
 }
