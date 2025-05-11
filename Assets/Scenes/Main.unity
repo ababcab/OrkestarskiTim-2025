@@ -2995,6 +2995,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5033492009814180857}
     - target: {fileID: 5738829569776029628, guid: b51cea5aac03f0147bbd004a03afeb2c, type: 3}
+      propertyPath: eventDuration
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5738829569776029628, guid: b51cea5aac03f0147bbd004a03afeb2c, type: 3}
+      propertyPath: placementClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 785decfe8519793448507d3503634211, type: 3}
+    - target: {fileID: 5738829569776029628, guid: b51cea5aac03f0147bbd004a03afeb2c, type: 3}
       propertyPath: rostiljSizzle
       value: 
       objectReference: {fileID: 8300000, guid: 16548edf8bd9c3041a916043803e0cac, type: 3}

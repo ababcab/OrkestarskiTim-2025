@@ -105,7 +105,7 @@ public class EventTile : MonoBehaviour,IMouseSelectable
                     return false;
                 placedObject =Instantiate(rostilj_prefab, this.transform.position, Quaternion.identity);
                 PlaySound(volModifier1, placementClip, 0);
-                PlaySound(volModifier2, rostiljSizzle, 5);
+                PlaySound(volModifier2, rostiljSizzle, 3);
                 Debug.Log($"I placed {placedObject.name}");
                 StartCoroutine(DeleteAfter(eventDuration, halfExtents_rostilj, 4));
             }

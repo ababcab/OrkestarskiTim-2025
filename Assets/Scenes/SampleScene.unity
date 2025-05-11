@@ -1195,7 +1195,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -1291,8 +1291,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundSource: {fileID: 2112366383}
   ambience: {fileID: 8300000, guid: ae812c8114ec00941b3fffcc8fb87ad3, type: 3}
+  music: {fileID: 8300000, guid: 86a6c45dad7804240af85a837d079b05, type: 3}
   masterSoundVolume: 1
-  volModifier: 0.25
+  volModifier1: 1
+  volModifier2: 0.5
 --- !u!1001 &1322770697107906286
 PrefabInstance:
   m_ObjectHideFlags: 0
