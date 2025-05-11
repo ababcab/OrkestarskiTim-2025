@@ -1,5 +1,5 @@
+using System.Collections;
 using System.Collections.Generic;
-using NUnit.Framework;
 using UnityEditor;
 using UnityEngine;
 
@@ -15,6 +15,18 @@ public class EventTile : MonoBehaviour,IMouseSelectable
     public GameObject fejkIndeksi_prefab;
     public GameObject parent_grid;
     public float boostToLoyalty;
+
+    public AudioSource soundSource;
+    public float masterSoundVolume = 100;
+    public AudioClip rostiljClip;
+    [Range(0f, 1f)]
+    public float volModifier1;
+    public AudioClip rostiljSizzle;
+    [Range(0f, 1f)]
+    public float volModifier2;
+    public AudioClip zurkaClip;
+    [Range(0f, 1f)]
+    public float volModifier3;
 
     #region Boxcast Params
 
@@ -76,13 +88,15 @@ public class EventTile : MonoBehaviour,IMouseSelectable
 
             if (selected == "Rostilj" && CastBox(4))
             {
-                
                 Instantiate(rostilj_prefab, this.transform.position, Quaternion.identity);
+                PlaySound(volModifier1, rostiljClip, 0);
+                PlaySound(volModifier2, rostiljSizzle, 5);
             }
             else if (selected == "Zurka")
             {
                 throw new System.Exception("Nisi implementovao BoxCast all");
                 Instantiate(zurka_prefab, this.transform.position, Quaternion.identity);
+                //PlaySound(volModifier3, zurkaClip);
             }
             else if (selected == "Kiflice")
             {
@@ -149,10 +163,6 @@ public class EventTile : MonoBehaviour,IMouseSelectable
         return canBuild;
     }
 
-
-
-
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer.ToString() == "Caci")
@@ -164,6 +174,20 @@ public class EventTile : MonoBehaviour,IMouseSelectable
                 Debug.Log("caci boost to loyalty: " + boostToLoyalty);
             }
         }
+    }
+
+    private void PlaySound(float volModifier, AudioClip myClip, int delayInSeconds)
+    {
+
+        StartCoroutine(PlaySoundAfterDelay(volModifier, myClip, delayInSeconds));
+    }
+    IEnumerator PlaySoundAfterDelay(float volModifier, AudioClip myClip, float delayTime)
+    {
+        yield return new WaitForSeconds(delayTime);
+
+        soundSource.clip = myClip;
+        soundSource.volume = masterSoundVolume * volModifier;
+        soundSource.PlayOneShot(myClip);
     }
 }
 
