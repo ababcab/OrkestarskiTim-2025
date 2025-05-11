@@ -60,7 +60,7 @@ public class GameLogic : MonoBehaviour
     {
         caci = new List<Caci>();
         dropdown = GameObject.Find("Dropdown").GetComponent<TMP_Dropdown>();
-        plata.AddMoney(100);
+        plata.AddMoney(40);
         StartPreparation();
     }
 
