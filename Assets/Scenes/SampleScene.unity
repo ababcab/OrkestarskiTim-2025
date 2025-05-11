@@ -760,6 +760,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   plata: {fileID: 2112366381}
   parentOfCaci: {fileID: 730542829}
+  newCaciAfterProtest: 4
   caciPool: {fileID: 2112366380}
   caci: []
   caciScrObjs:

@@ -50,24 +50,17 @@ public class Caci : MonoBehaviour
 
     public void NewDestination()
     {
-        destination = new Vector3(transform.position.x + Random.Range(-destinationOffset, destinationOffset), 0, transform.position.z + Random.Range(-4f, 4));
+        //destination = new Vector3(transform.position.x + Random.Range(-destinationOffset, destinationOffset), 0, transform.position.z + Random.Range(-4f, 4));
+        destination = GameObject.FindWithTag("Path Finding").GetComponent<PathFinding>().GetRandomDestination();
+        Debug.DrawLine(destination, destination + Vector3.up * 7,Color.red, Time.deltaTime*2000);
         agent.destination = destination;
     }
 
     public void GoToDestination(float deltaTime)
     {
-        /*
-        Vector3 direction = (destination - transform.position);
-        float sqrDistance = direction.sqrMagnitude;
-        if(sqrDistance < speed* speed * deltaTime * deltaTime)
+        if(agent.remainingDistance <= agent.stoppingDistance)
         {
-            transform.position = destination;
             NewDestination();
         }
-        else
-            transform.position += direction * speed;
-
-
-        */
     }
 }

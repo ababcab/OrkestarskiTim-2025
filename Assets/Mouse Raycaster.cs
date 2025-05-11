@@ -33,7 +33,7 @@ public class MouseRaycaster : MonoBehaviour
                 }
                 return;
             }
-            Debug.Log($"hit tile {hit.collider.gameObject.gameObject.name}");
+            //Debug.Log($"hit tile {hit.collider.gameObject.gameObject.name}");
 
             if (tile != hitTile)
             {

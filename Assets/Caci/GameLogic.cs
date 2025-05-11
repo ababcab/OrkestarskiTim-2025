@@ -14,6 +14,8 @@ public class GameLogic : MonoBehaviour
     [SerializeField]
     private Transform parentOfCaci;
     [SerializeField]
+    private int newCaciAfterProtest;
+    [SerializeField]
     private ObjectPool caciPool;
     [SerializeField]
     private List<Caci> caci;
@@ -56,7 +58,7 @@ public class GameLogic : MonoBehaviour
     {
         plata.AddMoney(100);
 
-        IncreaseCaci(1);
+        IncreaseCaci(newCaciAfterProtest);
 
 
         yield return new WaitForEndOfFrame();
