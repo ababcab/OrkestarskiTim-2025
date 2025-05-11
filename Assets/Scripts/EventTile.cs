@@ -105,18 +105,22 @@ public class EventTile : MonoBehaviour,IMouseSelectable
                     return false;
                 placedObject =Instantiate(rostilj_prefab, this.transform.position, Quaternion.identity);
                 PlaySound(volModifier1, placementClip, 0);
-                PlaySound(volModifier2, rostiljSizzle, 5);
+                PlaySound(volModifier2, rostiljSizzle, 3);
                 Debug.Log($"I placed {placedObject.name}");
                 StartCoroutine(DeleteAfter(eventDuration, halfExtents_rostilj, 4));
             }
             else if (selected == "Kiflice" && CastBox_Occupy(halfExtents_rostilj, 4))
             {
-                placedObject=Instantiate(bakine_kiflice_prefab, this.transform.position, Quaternion.identity);
+                if (!plata.EnoughMoney(25))
+                    return false;
+                placedObject =Instantiate(bakine_kiflice_prefab, this.transform.position, Quaternion.identity);
                 PlaySound(volModifier1, placementClip, 0);
                 StartCoroutine(DeleteAfter(eventDuration, halfExtents_rostilj, 4));
             }
             else if (selected == "Fejk indeksi" && CastBox_Occupy(halfExtents_rostilj, 4))
-            {   
+            {
+                if (!plata.EnoughMoney(25))
+                    return false;
                 placedObject = Instantiate(fejkIndeksi_prefab, this.transform.position, Quaternion.identity);
                 PlaySound(volModifier1, placementClip, 0);
                 StartCoroutine(DeleteAfter(eventDuration, halfExtents_rostilj, 4));

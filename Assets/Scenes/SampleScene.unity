@@ -417,7 +417,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Money:'
+  m_text: 'Sredstva:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1290,7 +1290,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41719779b8c39344daac8f45cb2e8b8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  money: 15
+  money: 25
   money_text: {fileID: 287129035}
 --- !u!114 &2112366382
 MonoBehaviour:
@@ -1319,7 +1319,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -1415,8 +1415,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundSource: {fileID: 2112366383}
   ambience: {fileID: 8300000, guid: ae812c8114ec00941b3fffcc8fb87ad3, type: 3}
+  music: {fileID: 8300000, guid: 86a6c45dad7804240af85a837d079b05, type: 3}
   masterSoundVolume: 1
-  volModifier: 0.25
+  volModifier1: 1
+  volModifier2: 0.5
 --- !u!1001 &1322770697107906286
 PrefabInstance:
   m_ObjectHideFlags: 0
