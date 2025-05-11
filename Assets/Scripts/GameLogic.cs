@@ -119,7 +119,7 @@ public class GameLogic : MonoBehaviour
         }
 
 
-        studentsInNextProtest += 10;
+        studentsInNextProtest += 1;
         parentOfStudenti.GetComponent<StudentSpawner>().DespawnStudents();
         studentTickCount = 0;
         timeLeft = 0;
@@ -153,10 +153,10 @@ public class GameLogic : MonoBehaviour
             item = caci[i];
             if(item.Affect(studenti))
             {
-                caci.RemoveAt(i);
+                //caci.RemoveAt(i);
                 //caciPool.ReturnObject(item.gameObject);
-                n--;
-                i--;
+                //n--;
+                //i--;
             }
         }
 
@@ -170,7 +170,13 @@ public class GameLogic : MonoBehaviour
         for (int i = 0; i < n; i++)
         {
             item = caci[i];
-            item.GoToDestination(tickRate);
+            if(item.GoToDestination(tickRate))
+            {
+                caci.RemoveAt(i);
+                //caciPool.ReturnObject(item.gameObject);
+                n--;
+                i--;
+            }
         }
     }
 

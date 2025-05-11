@@ -25,13 +25,22 @@ public class ObjectPool : MonoBehaviour
         {
             @object = Instantiate(prefab, parentPool);
             @object.SetActive(false);
+            @object.name += $" {i}";
             pool.Add(@object);
         }
     }
-
+    private bool correctly = false;
 
     public GameObject GetObject(bool setActive = true)
     {
+        if(!correctly)
+        {
+            for(int i=0;i<count;i++)
+            {
+                pool[i].GetComponent<Caci>().pool = this;
+            }
+            correctly = true;
+        }
         if(inUse == count)
         {
             throw new System.Exception("BRUH TOO LITTLE POOL SIZE");
@@ -39,6 +48,7 @@ public class ObjectPool : MonoBehaviour
         else
         {
             GameObject gO = pool[head];
+
             head++;
             head %= count;
             inUse++;

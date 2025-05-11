@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -27,7 +28,7 @@ public class Caci : MonoBehaviour, IPoolableObject
 
     [Header("Caci ")]
     [SerializeField]
-    private ObjectPool pool;
+    public ObjectPool pool;
 
     private PathFinding pathFinding;
     private void Start()
@@ -77,24 +78,27 @@ public class Caci : MonoBehaviour, IPoolableObject
         agent.destination = destination;
     }
 
-    public void GoToDestination(float deltaTime)
+    public bool GoToDestination(float deltaTime)
     {
-        Debug.Log($"{agent.remainingDistance} {agent.stoppingDistance}");
+        //Debug.Log($"{agent.remainingDistance} {agent.stoppingDistance}");
 
         if (scaredShitless > 0)
         {
             if (agent.remainingDistance <= 2)
             {
                 ReturnToPool();
+                return true;
             }
         }
         else if (agent.remainingDistance <= agent.stoppingDistance)
         {
             NewDestination();
         }
+        return false;
     }
     public void ReturnToPool()
     {
+        Debug.Log($"trying to return to pool {gameObject.name}");
         pool.ReturnObject(gameObject);
     }
 }
