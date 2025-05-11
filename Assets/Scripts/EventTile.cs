@@ -47,13 +47,21 @@ public class EventTile : MonoBehaviour,IMouseSelectable
         _OnMouseExit();
     }
 
-    public void IndirectMouseOver()
+    public bool IndirectMouseOver()
     {
-        _OnMouseOver();
+        return _OnMouseOver();
     }
 
 
+    public void IndirectMouseClickedWhileSelected(IMouseSelectable returnInfo)
+    {
+        Debug.Log($"{gameObject} got info from {returnInfo}");
+    }
 
+    public GameObject GetGameObject()
+    {
+        return gameObject;
+    }
 
     private void _OnMouseEnter()
     {
@@ -74,7 +82,7 @@ public class EventTile : MonoBehaviour,IMouseSelectable
         this.zauzeto = false;
     }
 
-    private void _OnMouseOver()
+    private bool _OnMouseOver()
     {
         if (Input.GetMouseButtonDown(0) && zauzeto == false)
         {
@@ -105,6 +113,7 @@ public class EventTile : MonoBehaviour,IMouseSelectable
             Debug.Log("big tile placed");
             zauzeto = true;
         }
+        return false;
     }
 
     private void _OnMouseExit()
@@ -222,5 +231,6 @@ public class EventTile : MonoBehaviour,IMouseSelectable
             }
         }
     }
+
 }
 

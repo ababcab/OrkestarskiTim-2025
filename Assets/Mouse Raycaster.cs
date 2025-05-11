@@ -3,57 +3,77 @@ using UnityEngine;
 public class MouseRaycaster : MonoBehaviour
 {
     private float distance = 400f;
-    private IMouseSelectable hitTile = null;
+    private IMouseSelectable hitSelectable = null;
 
     private int layerMask;
+    private int layerMask_select;
     private void Start()
     {
         layerMask = ~(1 << LayerMask.NameToLayer("Batinas") 
             | 1 << LayerMask.NameToLayer("Caci") 
             | 1 << LayerMask.NameToLayer("UI"));
+        layerMask_select = 1 << LayerMask.NameToLayer("Selectable")
+            | 1 << LayerMask.NameToLayer("Caci")
+            | 1 << LayerMask.NameToLayer("Tile");
+
 
     }
-
+    IMouseSelectable selected = null;
     private void Update()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-        if (Physics.Raycast(ray, out RaycastHit hit, distance, layerMask))
+        if (selected == null)
         {
-            //Debug.DrawLine(ray.origin, ray.origin + distance * ray.direction,Color.blue,Time.deltaTime*40f);
-            //Debug.Log($"hit something {hit.collider.gameObject.name}");
+            if (Physics.Raycast(ray, out RaycastHit hit, distance, layerMask))
+            {
+                IMouseSelectable selectable = hit.collider.gameObject.GetComponent<IMouseSelectable>();
 
-            IMouseSelectable tile = hit.collider.gameObject.GetComponent<IMouseSelectable>();
-            if(tile == null)
-            {
-                if(hitTile != null)
-                {
-                    hitTile.IndirectMouseExit();
-                    hitTile = null;
-                }
-                return;
-            }
-            //Debug.Log($"hit tile {hit.collider.gameObject.gameObject.name}");
 
-            if (tile != hitTile)
-            {
-                if(hitTile != null)
+                if (selectable == null)
                 {
-                    hitTile.IndirectMouseExit();
+                    if (hitSelectable != null)
+                    {
+                        hitSelectable.IndirectMouseExit();
+                        hitSelectable = null;
+                    }
+                    return;
                 }
-                hitTile = tile;
-                hitTile.IndirectMouseEnter();
+
+
+                if (selectable != hitSelectable)
+                {
+                    if (hitSelectable != null)
+                    {
+                        hitSelectable.IndirectMouseExit();
+                    }
+                    hitSelectable = selectable;
+                    hitSelectable.IndirectMouseEnter();
+                }
+                else //selectable i hitselectable su isti object
+                {
+                    if (hitSelectable.IndirectMouseOver())
+                    {
+                        selected = hitSelectable;
+                        Debug.Log($"{selected} is new selected");
+                        hitSelectable.IndirectMouseExit();
+                    }
+                }
             }
-            else
+            else //Nije pogodilo nista, dok nije nista selektovano
             {
-                //Debug.Log($"_{hitTile}_ _{tile}_ {tile==null}");
-                hitTile.IndirectMouseOver();
+
             }
         }
-        else
+        else // nesto jeste selektovano
         {
-            //Debug.DrawLine(ray.origin, ray.origin + distance * ray.direction, Color.red, Time.deltaTime * 40f);
-            //Debug.Log($"Didnt hit anything valid");
+            if (Physics.Raycast(ray, out RaycastHit hit, distance, layerMask_select) && Input.GetMouseButtonDown(0))
+            {
+                IMouseSelectable toSendInfoToSelected = hit.collider.gameObject.GetComponent<IMouseSelectable>();
+                Debug.Log($"{hit.collider.gameObject} is gonna send info to {selected}");
+                selected.IndirectMouseClickedWhileSelected(toSendInfoToSelected);
+                selected = null;
+            }
         }
+        
     }
 }
