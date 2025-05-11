@@ -32,9 +32,8 @@ public class Caci : MonoBehaviour, IPoolableObject
     public ObjectPool pool;
 
     private PathFinding pathFinding;
-    private void Start()
+    private void Update()
     {
-        
     }
 
     public void SetSO(CaciScrObj c)
@@ -65,6 +64,7 @@ public class Caci : MonoBehaviour, IPoolableObject
         if( Random.Range(0, 100f) > loyalty + bonusLoyalty)
         {
             agent.SetDestination(pathFinding.GetEscapeRoute());
+            animator.SetBool("Run",true);
             scaredShitless++;
             return true;
         }
@@ -77,6 +77,7 @@ public class Caci : MonoBehaviour, IPoolableObject
         destination = pathFinding.GetRandomDestination();
         Debug.DrawLine(destination, destination + Vector3.up * 7,Color.red, Time.deltaTime*2000);
         agent.destination = destination;
+        animator.SetBool("Walk", true);
     }
 
     public bool GoToDestination(float deltaTime)

@@ -7109,7 +7109,7 @@ MonoBehaviour:
   zauzeto: 0
   dropdown: {fileID: 52188260}
   sator_prefab: {fileID: 919132149155446097, guid: 9013d95fe7c37a24f8a757384fabe256, type: 3}
-  batinas_prefab: {fileID: 7011598297153198295, guid: 922a6b2b26638524eba932b3e110ab23, type: 3}
+  batinas_prefab: {fileID: 2046070213481501161, guid: 98dc625fe70e07543ac646a5833dc65f, type: 3}
   parent_grid: {fileID: 892633933}
   sator_cost: 10
   batinas_cost: 5
