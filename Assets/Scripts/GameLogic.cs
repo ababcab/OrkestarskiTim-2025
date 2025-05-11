@@ -211,6 +211,5 @@ public class GameLogic : MonoBehaviour
             timer.color = new Color32(255, 0, 0, 255);
         else
             timer.color = new Color32(255, 255, 255, 255);
-        Debug.Log(timeLeftRound + " " + timeLeft);
     }
 }
