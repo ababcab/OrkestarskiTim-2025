@@ -3,7 +3,12 @@ guid: f4abd045b9b305649aebab32a428be0b
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: kiflice_pCube6Mat
+    second: {fileID: 2100000, guid: bab7b5ac5044a644484c536740b3ad7e, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
