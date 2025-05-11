@@ -7,10 +7,13 @@ public class Tile : MonoBehaviour, IMouseSelectable
 {
     public bool zauzeto = false;
     public GameObject dropdown;
+    [Header("PRefavs")]
     public GameObject sator_prefab;
     public GameObject batinas_prefab;
     public GameObject parent_grid;
-
+    [Header("Costs")]
+    public int sator_cost = 10;
+    public int batinas_cost = 5;
     [SerializeField]
     private float eventDuration;
     [SerializeField]
@@ -25,6 +28,7 @@ public class Tile : MonoBehaviour, IMouseSelectable
     public float volModifier;
 
     private PathFinding pathFinding;
+    private GameLogic gameLogic;
     private Vector3 halfExtents_sator = Vector3.one;
 
     void Start()
@@ -33,6 +37,7 @@ public class Tile : MonoBehaviour, IMouseSelectable
         Debug.Log($"bruh {GameObject.Find("Game Logic")}");
         plata = GameObject.Find("Game Logic").GetComponent<Plata>();
         pathFinding = GameObject.FindWithTag("Path Finding").GetComponent<PathFinding>();
+        gameLogic = GameObject.FindWithTag("Game Logic").GetComponent<GameLogic>();
     }
 
     public void IndirectMouseEnter()
@@ -74,7 +79,7 @@ public class Tile : MonoBehaviour, IMouseSelectable
             string @string = dropdown.GetComponent<GetValueFromDropdown>().selectedOption;
             if (@string == "Sator")
             {
-                if (!plata.EnoughMoney(10))
+                if (!plata.EnoughMoney(sator_cost))
                  return false;
                 //placeSator();
                 //lose money
@@ -84,7 +89,7 @@ public class Tile : MonoBehaviour, IMouseSelectable
 
 
                 placedObject = Instantiate(sator_prefab, this.transform.position, Quaternion.identity);
-
+                gameLogic.ChangeSator(+1);
                 
                 //placedObject.GetComponent<Placement>().parentTile = this;
                 StartCoroutine(DeleteAfter(eventDuration, halfExtents_sator, 1));
@@ -92,7 +97,7 @@ public class Tile : MonoBehaviour, IMouseSelectable
             
             }else if (@string == "Batinas")
             {
-                if (!plata.EnoughMoney())
+                if (!plata.EnoughMoney(batinas_cost))
                     return false;
                 GameObject new_batinas = Instantiate(batinas_prefab, pathFinding.GetEscapeRoute(), Quaternion.identity);
                 new_batinas.GetComponent<NavMeshAgent>().SetDestination(transform.position);
@@ -125,6 +130,8 @@ public class Tile : MonoBehaviour, IMouseSelectable
     {
         yield return new WaitForSeconds(time);
         placedObject.SetActive(false);
+
+        gameLogic.ChangeSator(-1);
         Debug.Log($"I disabled {placedObject.name}");
         this.zauzeto = false;
     }

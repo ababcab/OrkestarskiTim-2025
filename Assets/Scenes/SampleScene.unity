@@ -1200,7 +1200,7 @@ GameObject:
   - component: {fileID: 2112366383}
   m_Layer: 0
   m_Name: Game Logic
-  m_TagString: Untagged
+  m_TagString: Game Logic
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1232,6 +1232,7 @@ MonoBehaviour:
   preparationTime: 5
   protestTime: 10
   timeLeft: 0
+  gameStarted: 0
 --- !u!4 &2112366378
 Transform:
   m_ObjectHideFlags: 0

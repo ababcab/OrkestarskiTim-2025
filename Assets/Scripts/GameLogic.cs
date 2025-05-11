@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class GameLogic : MonoBehaviour
@@ -9,6 +11,8 @@ public class GameLogic : MonoBehaviour
     [Header("Dependencies")]
     [SerializeField]
     private Plata plata;
+    [SerializeField]
+    private TMP_Dropdown dropdown;
 
     [Header("UI")]
     [SerializeField]
@@ -53,6 +57,8 @@ public class GameLogic : MonoBehaviour
     private void Start()
     {
         caci = new List<Caci>();
+        dropdown = GameObject.Find("Dropdown").GetComponent<TMP_Dropdown>();
+        plata.AddMoney(100);
         StartPreparation();
     }
 
@@ -64,11 +70,18 @@ public class GameLogic : MonoBehaviour
         }
     }
 
+    public bool gameStarted = false;
+
     IEnumerator Preparation()
     {
+        yield return new WaitUntil(() => { return gameStarted; });
+
         plata.AddMoney(10);
 
-        IncreaseCaci(newCaciAfterProtest);
+
+        IncreaseCaci(num_sator* caci_in_sator - caci.Count);
+
+        //IncreaseCaci(newCaciAfterProtest);
 
         yield return new WaitForEndOfFrame();
         timeLeft = preparationTime;
@@ -125,6 +138,22 @@ public class GameLogic : MonoBehaviour
         timeLeft = 0;
         currentCoroutine = null;
         DetermineNewEvent();
+    }
+    private int num_sator = 0;
+    private int caci_in_sator = 5;
+    public void ChangeSator(int change)
+    {
+        lock(this)
+        {
+            if(gameStarted == false)
+            {
+                gameStarted = true;
+                dropdown = GameObject.Find("Dropdown").GetComponent<TMP_Dropdown>();
+                Debug.Log($"{dropdown} {GameObject.Find("Dropdown")}");
+                dropdown.interactable = true;
+            }
+            num_sator++;
+        }
     }
 
     private void GameOver()
