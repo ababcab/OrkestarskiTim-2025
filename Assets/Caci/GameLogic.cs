@@ -141,7 +141,7 @@ public class GameLogic : MonoBehaviour
             if(item.Affect(studenti))
             {
                 caci.RemoveAt(i);
-                caciPool.ReturnObject(item.gameObject);
+                //caciPool.ReturnObject(item.gameObject);
                 n--;
                 i--;
             }

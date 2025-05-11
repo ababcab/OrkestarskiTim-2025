@@ -3,7 +3,7 @@ using UnityEngine;
 public class PathFinding : MonoBehaviour
 {
 
-    [Header("Caci params")]
+    [Header("Bounds")]
     [SerializeField]
     private Transform boundBotLeft;
     [SerializeField]
@@ -12,6 +12,8 @@ public class PathFinding : MonoBehaviour
     private Transform boundTopLeft;
     [SerializeField]
     private Transform boundTopRight;
+    [SerializeField]
+    private Transform escapeRoute;
     public Vector3 GetRandomDestination()
     {
         float randomLeftRight = Random.Range(0, 1f);
@@ -23,6 +25,10 @@ public class PathFinding : MonoBehaviour
 
 
         return dest;
+    }
+    public Vector3 GetEscapeRoute()
+    {
+        return escapeRoute.position;
     }
 
 }
