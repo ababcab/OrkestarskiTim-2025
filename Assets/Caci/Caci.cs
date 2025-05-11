@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Caci : MonoBehaviour
 {
@@ -18,7 +19,10 @@ public class Caci : MonoBehaviour
     [SerializeField]
     private float destinationOffset;
 
-
+    [Header("Caci Agent")]
+    [SerializeField]
+    private NavMeshAgent agent;
+    
     public void SetSO(CaciScrObj c)
     {
         SO = c;
@@ -47,10 +51,12 @@ public class Caci : MonoBehaviour
     public void NewDestination()
     {
         destination = new Vector3(transform.position.x + Random.Range(-destinationOffset, destinationOffset), 0, transform.position.z + Random.Range(-4f, 4));
+        agent.destination = destination;
     }
 
     public void GoToDestination(float deltaTime)
     {
+        /*
         Vector3 direction = (destination - transform.position);
         float sqrDistance = direction.sqrMagnitude;
         if(sqrDistance < speed* speed * deltaTime * deltaTime)
@@ -60,5 +66,8 @@ public class Caci : MonoBehaviour
         }
         else
             transform.position += direction * speed;
+
+
+        */
     }
 }
