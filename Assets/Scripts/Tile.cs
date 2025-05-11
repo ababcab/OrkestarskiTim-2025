@@ -17,7 +17,7 @@ public class Tile : MonoBehaviour, IMouseSelectable
     {
         this.gameObject.GetComponent<MeshRenderer>().enabled = false;
         Debug.Log($"bruh {GameObject.Find("Game Logic")}");
-        //plata = GameObject.Find("Game Logic").GetComponent<Plata>();
+        plata = GameObject.Find("Game Logic").GetComponent<Plata>();
     }
 
 
