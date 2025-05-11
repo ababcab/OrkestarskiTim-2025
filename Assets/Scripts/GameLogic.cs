@@ -96,7 +96,7 @@ public class GameLogic : MonoBehaviour
     IEnumerator Protest()
     {
         studenti = studentsInNextProtest;
-        parentOfStudenti.GetComponent<StudentSpawner>().SpawnStudents(studenti, protestTime);
+        parentOfStudenti.GetComponent<StudentSpawner>().StudentSpawnerCoroutine(studenti, protestTime);
 
         yield return new WaitForSeconds(tickRate);
         timeLeft = protestTime;
@@ -119,7 +119,7 @@ public class GameLogic : MonoBehaviour
         }
 
 
-        studentsInNextProtest += 1;
+        studentsInNextProtest += 10;
         parentOfStudenti.GetComponent<StudentSpawner>().DespawnStudents();
         studentTickCount = 0;
         timeLeft = 0;
