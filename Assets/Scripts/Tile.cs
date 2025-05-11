@@ -33,10 +33,18 @@ public class Tile : MonoBehaviour, IMouseSelectable
         _OnMouseExit(); 
     }
 
-    public void IndirectMouseOver()
+    public bool IndirectMouseOver()
     {
-        _OnMouseOver();
+        return _OnMouseOver();
     }
+
+
+    public GameObject GetGameObject()
+    {
+        return gameObject;
+    }
+
+
 
     private void _OnMouseEnter()
     {
@@ -47,15 +55,15 @@ public class Tile : MonoBehaviour, IMouseSelectable
         }
     }
 
-    private void _OnMouseOver()
+    private bool _OnMouseOver()
     {
         if (Input.GetMouseButtonDown(0) && zauzeto == false)
         {
 
             if (dropdown.GetComponent<GetValueFromDropdown>().selectedOption == "Sator")
             {
-            if (!plata.EnoughMoney())
-                return;
+                if (!plata.EnoughMoney())
+                 return false;
                 //placeSator();
                 //lose money
                 //+cacije
@@ -66,7 +74,10 @@ public class Tile : MonoBehaviour, IMouseSelectable
                 new_sator.GetComponent<Placement>().parentTile = this;
                 PlaySound(volModifier, satorClip);
             } 
+            }
+            //return true;
         }
+        return false;
     }
 
     private void _OnMouseExit()
@@ -83,4 +94,9 @@ public class Tile : MonoBehaviour, IMouseSelectable
         soundSource.volume = masterSoundVolume * volModifier;
         soundSource.Play();
     }
+    public void IndirectMouseClickedWhileSelected(IMouseSelectable returnInfo)
+    {
+        Debug.Log($"{gameObject} got info from {returnInfo}");
+    }
+
 }

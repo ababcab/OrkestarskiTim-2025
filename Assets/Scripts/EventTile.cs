@@ -15,6 +15,10 @@ public class EventTile : MonoBehaviour,IMouseSelectable
     public GameObject fejkIndeksi_prefab;
     public GameObject parent_grid;
     public float boostToLoyalty;
+    [Header("Time")]
+    [SerializeField]
+    private float eventDuration;
+    private GameObject placedObject = null;
 
     public AudioSource soundSource;
     public float masterSoundVolume = 100;
@@ -42,11 +46,6 @@ public class EventTile : MonoBehaviour,IMouseSelectable
         layerMask_boxCast = 1 << LayerMask.NameToLayer("Tile");
     }
 
-    void Update()
-    {
-        
-    }
-
     public void IndirectMouseEnter()
     {
         _OnMouseEnter();
@@ -57,9 +56,20 @@ public class EventTile : MonoBehaviour,IMouseSelectable
         _OnMouseExit();
     }
 
-    public void IndirectMouseOver()
+    public bool IndirectMouseOver()
     {
-        _OnMouseOver();
+        return _OnMouseOver();
+    }
+
+
+    public void IndirectMouseClickedWhileSelected(IMouseSelectable returnInfo)
+    {
+        Debug.Log($"{gameObject} got info from {returnInfo}");
+    }
+
+    public GameObject GetGameObject()
+    {
+        return gameObject;
     }
 
     private void _OnMouseEnter()
@@ -80,19 +90,28 @@ public class EventTile : MonoBehaviour,IMouseSelectable
             this.gameObject.GetComponent<MeshRenderer>().enabled = true;
         }
     }
+    IEnumerator DeleteAfter(float time, Vector3 halfExtents, int needToHit)
+    {
+        yield return new WaitForSeconds(time);
+        placedObject.SetActive(false);
+        Debug.Log($"I disabled {placedObject.name}");
+        CastBox_Release(halfExtents, needToHit);
+        this.zauzeto = false;
+    }
 
-    private void _OnMouseOver()
+    private bool _OnMouseOver()
     {
         if (Input.GetMouseButtonDown(0) && zauzeto == false)
         {
             string selected = dropdown.GetComponent<GetValueFromDropdown>().selectedOption;
 
-            if (selected == "Rostilj" && CastBox(4))
+            if (selected == "Rostilj" && CastBox_Occupy(halfExtents_rostilj,4))
             {
-                //throw new System.Exception("Nisi implementovao BoxCast all");
-                Instantiate(rostilj_prefab, this.transform.position, Quaternion.identity);
+                placedObject=Instantiate(rostilj_prefab, this.transform.position, Quaternion.identity);
                 PlaySound(volModifier1, rostiljClip, 0);
                 PlaySound(volModifier2, rostiljSizzle, 5);
+                Debug.Log($"I placed {placedObject.name}");
+                StartCoroutine(DeleteAfter(eventDuration, halfExtents_rostilj, 4));
             }
             else if (selected == "Zurka")
             {
@@ -123,6 +142,7 @@ public class EventTile : MonoBehaviour,IMouseSelectable
             Debug.Log("big tile placed");
             zauzeto = true;
         }
+        return false;
     }
 
     private void _OnMouseExit()
@@ -143,36 +163,48 @@ public class EventTile : MonoBehaviour,IMouseSelectable
         }
     }
     
-    private bool CastBox(int needToHit)
+
+    private bool CastBox_Occupy(Vector3 halfExtents,int needToHit)
     {
         bool canBuild = true;
         RaycastHit[] array =
-            Physics.BoxCastAll(transform.position, halfExtents_rostilj,
+            Physics.BoxCastAll(transform.position, halfExtents,
             Vector3.up,
             Quaternion.identity,
             0.1f,
             layerMask: layerMask_boxCast);
+
         Debug.DrawLine(transform.position, transform.position + Vector3.up * 20, Color.blue, Time.deltaTime * 160f);
         int count = array.Length;
+        string @string;
         if (needToHit != count)
         {
-            Debug.Log($"Didnt hit enought (neededto){needToHit} vs {count}");
+            @string = $"Pogodjeni su:  Didnt hit enough (neededto) {needToHit} vs {count}\n";
+            for (int i = 0; i < count; i++)
+            {
+                Tile tile = array[i].collider.gameObject.GetComponent<Tile>();
+                Debug.DrawLine(array[i].collider.transform.position, array[i].collider.transform.position + Vector3.up * 20, Color.magenta, Time.deltaTime * 160f);
+
+                @string+=$"{tile.gameObject.name}  {tile.zauzeto == false}\n";
+            }
+           Debug.Log(@string);
             return false;
         }
-        Debug.Log($"Hit {count}");
 
+        @string = $"Pogodjeni su: Hit enough (neededto) {needToHit} vs {count}\n";
         for (int i=0;i<count;i++)
         {
             Tile tile = array[i].collider.gameObject.GetComponent<Tile>();
             Debug.DrawLine(array[i].collider.transform.position, array[i].collider.transform.position + Vector3.up * 20, Color.magenta, Time.deltaTime * 160f);
 
-            Debug.Log($"{tile.gameObject.name} je slobodan {tile.zauzeto == false}");
+            @string += $"{tile.gameObject.name}  {tile.zauzeto == false}\n";
             if (tile.zauzeto)
                 canBuild = false;
             else
                 hitTiles.Add(tile);
         }
-        if(canBuild)
+        Debug.Log(@string);
+        if (canBuild)
             for (int i = 0; i < count; i++)
             {
                 hitTiles[i].zauzeto = true;
@@ -180,6 +212,48 @@ public class EventTile : MonoBehaviour,IMouseSelectable
         hitTiles.Clear();
         return canBuild;
     }
+
+    private void CastBox_Release(Vector3 halfExtents, int needToHit)
+    {
+
+        RaycastHit[] array =
+            Physics.BoxCastAll(transform.position, halfExtents,
+            Vector3.up,
+            Quaternion.identity,
+            0.1f,
+            layerMask: layerMask_boxCast);
+
+
+        Debug.DrawLine(transform.position, transform.position + Vector3.up * 20, Color.blue, Time.deltaTime * 160f);
+        int count = array.Length;
+        string @string="";
+        if(count != needToHit)
+        {
+            @string = $"Pogodjeni su:  Didnt hit enough (neededto) {needToHit} vs {count} |||| Brisanje\n";
+            for (int i = 0; i < count; i++)
+            {
+                Tile tile = array[i].collider.gameObject.GetComponent<Tile>();
+                Debug.DrawLine(array[i].collider.transform.position, array[i].collider.transform.position + Vector3.up * 20, Color.magenta, Time.deltaTime * 160f);
+
+                @string += $"{tile.gameObject.name}  {tile.zauzeto == false}\n";
+            }
+            Debug.Log(@string);
+            throw new System.Exception();
+        }
+        for(int i=0;i<count;i++)
+        {
+            @string = $"Pogodjeni su:  Hit enough (neededto) {needToHit} vs {count} |||| Brisanje\n";
+            Tile tile = array[i].collider.gameObject.GetComponent<Tile>();
+            Debug.DrawLine(array[i].collider.transform.position, array[i].collider.transform.position + Vector3.up * 20, Color.magenta, Time.deltaTime * 160f);
+
+            @string += $"{tile.gameObject.name} bio zauzet:{tile.zauzeto == false}\n";
+            tile.zauzeto = false;
+        }
+
+        Debug.Log(@string);
+    }
+
+
 
     private void OnTriggerEnter(Collider other)
     {

@@ -1,12 +1,15 @@
 using UnityEngine;
+using UnityEngine.AI;
 
-public class Caci : MonoBehaviour
+public class Caci : MonoBehaviour, IPoolableObject
 {
     [Header("Scriptable Object")]
     [SerializeField]
     private CaciScrObj SO;
 
     [Header("Caci params")]
+    [SerializeField]
+    private int scaredShitless = 0;
     [SerializeField]
     private float loyalty;
     [SerializeField]
@@ -18,6 +21,19 @@ public class Caci : MonoBehaviour
     [SerializeField]
     private float destinationOffset;
 
+    [Header("Caci Agent")]
+    [SerializeField]
+    private NavMeshAgent agent;
+
+    [Header("Caci ")]
+    [SerializeField]
+    private ObjectPool pool;
+
+    private PathFinding pathFinding;
+    private void Start()
+    {
+        
+    }
 
     public void SetSO(CaciScrObj c)
     {
@@ -29,6 +45,7 @@ public class Caci : MonoBehaviour
         speed = SO.baseSpeed;
         transform.parent = parent;
         transform.localPosition = Vector3.zero;
+        pathFinding = GameObject.FindWithTag("Path Finding").GetComponent<PathFinding>();
         NewDestination();
     }
 
@@ -39,26 +56,44 @@ public class Caci : MonoBehaviour
     /// <returns></returns>
     public bool Affect(float studenti)
     {
+        if (scaredShitless > 0)
+            return false;
         if (studenti < SO.baseLoyalty)
             return false;
-        return Random.Range(0, 1f)*100f > loyalty + bonusLoyalty;
+        if( Random.Range(0, 100f) > loyalty + bonusLoyalty)
+        {
+            agent.SetDestination(pathFinding.GetEscapeRoute());
+            scaredShitless++;
+        }
+        return true;
     }
 
     public void NewDestination()
     {
-        destination = new Vector3(transform.position.x + Random.Range(-destinationOffset, destinationOffset), 0, transform.position.z + Random.Range(-4f, 4));
+        //destination = new Vector3(transform.position.x + Random.Range(-destinationOffset, destinationOffset), 0, transform.position.z + Random.Range(-4f, 4));
+        destination = pathFinding.GetRandomDestination();
+        Debug.DrawLine(destination, destination + Vector3.up * 7,Color.red, Time.deltaTime*2000);
+        agent.destination = destination;
     }
 
     public void GoToDestination(float deltaTime)
     {
-        Vector3 direction = (destination - transform.position);
-        float sqrDistance = direction.sqrMagnitude;
-        if(sqrDistance < speed* speed * deltaTime * deltaTime)
+        Debug.Log($"{agent.remainingDistance} {agent.stoppingDistance}");
+
+        if (scaredShitless > 0)
         {
-            transform.position = destination;
+            if (agent.remainingDistance <= 2)
+            {
+                ReturnToPool();
+            }
+        }
+        else if (agent.remainingDistance <= agent.stoppingDistance)
+        {
             NewDestination();
         }
-        else
-            transform.position += direction * speed;
+    }
+    public void ReturnToPool()
+    {
+        pool.ReturnObject(gameObject);
     }
 }

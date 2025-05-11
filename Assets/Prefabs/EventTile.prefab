@@ -159,3 +159,4 @@ MonoBehaviour:
   fejkIndeksi_prefab: {fileID: 0}
   parent_grid: {fileID: 0}
   boostToLoyalty: 5
+  eventDuration: 3
