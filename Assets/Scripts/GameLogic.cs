@@ -61,7 +61,7 @@ public class GameLogic : MonoBehaviour
 
     IEnumerator Preparation()
     {
-        //plata.AddMoney(100);
+        plata.AddMoney(100);
 
         IncreaseCaci(1);
 
