@@ -53,9 +53,18 @@ public class StudentSpawner : MonoBehaviour
 
         yield return new WaitForSeconds(waitTillLeave);
         int count = students.Count;
+        
         for (int i=0;i<count;i++)
         {
-            students[i].GetComponent<NavMeshAgent>().destination = spawnPos[Random.Range(0, spawnPos.Count)].position;
+            try
+            {
+
+                students[i].GetComponent<NavMeshAgent>().destination = spawnPos[Random.Range(0, spawnPos.Count)].position;
+            }
+            catch
+            {
+
+            }
             yield return new WaitForSeconds(remaining / count);
         }
     }

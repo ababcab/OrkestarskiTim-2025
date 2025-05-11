@@ -492,6 +492,9 @@ MonoBehaviour:
     - m_Text: Fejk indeksi
       m_Image: {fileID: 0}
       m_Color: {r: 1, g: 1, b: 1, a: 1}
+    - m_Text: Batinas
+      m_Image: {fileID: 0}
+      m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -3587,6 +3590,10 @@ PrefabInstance:
       propertyPath: sator_prefab
       value: 
       objectReference: {fileID: 823403017}
+    - target: {fileID: 3639963922209057094, guid: f2bd63ce9c0d93240b8b450bc025b431, type: 3}
+      propertyPath: batinas_prefab
+      value: 
+      objectReference: {fileID: 7011598297153198295, guid: 922a6b2b26638524eba932b3e110ab23, type: 3}
     - target: {fileID: 7826108393276797554, guid: f2bd63ce9c0d93240b8b450bc025b431, type: 3}
       propertyPath: m_Name
       value: Tile

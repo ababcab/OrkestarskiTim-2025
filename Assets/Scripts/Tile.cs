@@ -1,10 +1,12 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Tile : MonoBehaviour, IMouseSelectable
 {
     public bool zauzeto = false;
     public GameObject dropdown;
     public GameObject sator_prefab;
+    public GameObject batinas_prefab;
     public GameObject parent_grid;
 
     [SerializeField]
@@ -16,11 +18,13 @@ public class Tile : MonoBehaviour, IMouseSelectable
     [Range(0f, 1f)]
     public float volModifier;
 
+    private PathFinding pathFinding;
     void Start()
     {
         this.gameObject.GetComponent<MeshRenderer>().enabled = false;
         Debug.Log($"bruh {GameObject.Find("Game Logic")}");
         plata = GameObject.Find("Game Logic").GetComponent<Plata>();
+        pathFinding = GameObject.FindWithTag("Path Finding").GetComponent<PathFinding>();
     }
 
     public void IndirectMouseEnter()
@@ -59,8 +63,8 @@ public class Tile : MonoBehaviour, IMouseSelectable
     {
         if (Input.GetMouseButtonDown(0) && zauzeto == false)
         {
-
-            if (dropdown.GetComponent<GetValueFromDropdown>().selectedOption == "Sator")
+            string @string = dropdown.GetComponent<GetValueFromDropdown>().selectedOption;
+            if (@string == "Sator")
             {
                 if (!plata.EnoughMoney())
                  return false;
@@ -74,6 +78,12 @@ public class Tile : MonoBehaviour, IMouseSelectable
                 new_sator.GetComponent<Placement>().parentTile = this;
                 PlaySound(volModifier, satorClip);
             
+            }else if (@string == "Batinas")
+            {
+                if (!plata.EnoughMoney())
+                    return false;
+                GameObject new_batinas = Instantiate(batinas_prefab, pathFinding.GetEscapeRoute(), Quaternion.identity);
+                new_batinas.GetComponent<NavMeshAgent>().SetDestination(transform.position);
             }
             //return true;
         }
