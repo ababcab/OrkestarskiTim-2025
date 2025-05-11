@@ -13,6 +13,8 @@ public class GameLogic : MonoBehaviour
     private Plata plata;
     [SerializeField]
     private TMP_Dropdown dropdown;
+    [SerializeField]
+    private GameObject endScreen;
 
     [Header("UI")]
     [SerializeField]
@@ -152,7 +154,7 @@ public class GameLogic : MonoBehaviour
                 Debug.Log($"{dropdown} {GameObject.Find("Dropdown")}");
                 dropdown.interactable = true;
             }
-            num_sator++;
+            num_sator+= change;
         }
     }
 
@@ -161,6 +163,8 @@ public class GameLogic : MonoBehaviour
         timeLeft = 0;
         currentCoroutine = null;
         Debug.Log("Game end");
+
+        endScreen.SetActive(true);
     }
 
     int studentTickCount = 0;
@@ -173,7 +177,6 @@ public class GameLogic : MonoBehaviour
             return;
         }
         studentTickCount = 0;
-        int before = caci.Count;
         int n = caci.Count;
         Caci item = null;
         for (int i=0;i<n;i++)
@@ -188,12 +191,12 @@ public class GameLogic : MonoBehaviour
                 //i--;
             }
         }
-
-        Debug.Log($"Student Tick: Deleted Caci {-caci.Count+before}");
+;
     }
 
     private void CaciDestinationTick()
     {
+        int before = caci.Count;
         int n = caci.Count;
         Caci item = null;
         for (int i = 0; i < n; i++)
@@ -207,6 +210,7 @@ public class GameLogic : MonoBehaviour
                 i--;
             }
         }
+        Debug.Log($"Student Tick: Deleted Caci {-caci.Count + before}");
     }
 
     private void DetermineNewEvent()
