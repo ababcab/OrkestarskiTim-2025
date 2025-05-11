@@ -89,7 +89,7 @@ public class EventTile : MonoBehaviour,IMouseSelectable
 
             if (selected == "Rostilj" && CastBox(4))
             {
-                throw new System.Exception("Nisi implementovao BoxCast all");
+                //throw new System.Exception("Nisi implementovao BoxCast all");
                 Instantiate(rostilj_prefab, this.transform.position, Quaternion.identity);
                 PlaySound(volModifier1, rostiljClip, 0);
                 PlaySound(volModifier2, rostiljSizzle, 5);

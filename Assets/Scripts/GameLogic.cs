@@ -13,8 +13,6 @@ public class GameLogic : MonoBehaviour
     [Header("UI")]
     [SerializeField]
     private TMPro.TextMeshProUGUI timer;
-    [SerializeField]
-    private TMPro.TextMeshProUGUI sredstva;
 
     [Header("Caci")]
     [SerializeField]
