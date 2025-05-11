@@ -189,10 +189,10 @@ public class GameLogic : MonoBehaviour
         for(int i=0;i<amount;i++)
         {
             //Caci @new = new Caci();
-            /*Caci @new = caciPool.GetObject().GetComponent<Caci>();
+            Caci @new = caciPool.GetObject().GetComponent<Caci>();
             @new.SetSO(caciScrObjs[0]);
             @new.SetUp(parentOfCaci);
-            caci.Add(@new);*/
+            caci.Add(@new);
         }
     }
 

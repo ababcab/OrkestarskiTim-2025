@@ -64,8 +64,9 @@ public class Caci : MonoBehaviour, IPoolableObject
         {
             agent.SetDestination(pathFinding.GetEscapeRoute());
             scaredShitless++;
+            return true;
         }
-        return true;
+        return false;
     }
 
     public void NewDestination()
