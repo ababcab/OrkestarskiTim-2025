@@ -73,7 +73,7 @@ public class Tile : MonoBehaviour, IMouseSelectable
                 GameObject new_sator = Instantiate(sator_prefab, this.transform.position, Quaternion.identity);
                 new_sator.GetComponent<Placement>().parentTile = this;
                 PlaySound(volModifier, satorClip);
-            } 
+            
             }
             //return true;
         }
