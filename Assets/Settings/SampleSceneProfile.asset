@@ -108,7 +108,7 @@ MonoBehaviour:
   active: 1
   intensity:
     m_OverrideState: 1
-    m_Value: 0.03
+    m_Value: 0.053
 --- !u!114 &-6296979209078315063
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -146,19 +146,19 @@ MonoBehaviour:
   active: 1
   postExposure:
     m_OverrideState: 1
-    m_Value: 0.23
+    m_Value: 0.45
   contrast:
     m_OverrideState: 1
     m_Value: 5
   colorFilter:
     m_OverrideState: 0
-    m_Value: {r: 0.5423068, g: 0.7132075, b: 0.5466158, a: 1}
+    m_Value: {r: 0.106384106, g: 0.08061941, b: 0.6377357, a: 1}
   hueShift:
     m_OverrideState: 0
     m_Value: -74
   saturation:
     m_OverrideState: 1
-    m_Value: -5
+    m_Value: 16
 --- !u!114 &-3357603926938260329
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -180,10 +180,10 @@ MonoBehaviour:
     m_Value: {x: 0.5, y: 0.5}
   intensity:
     m_OverrideState: 1
-    m_Value: 0.48
+    m_Value: 0.381
   smoothness:
-    m_OverrideState: 0
-    m_Value: 0.2
+    m_OverrideState: 1
+    m_Value: 0.588
   rounded:
     m_OverrideState: 0
     m_Value: 0
@@ -525,7 +525,7 @@ MonoBehaviour:
   active: 1
   temperature:
     m_OverrideState: 1
-    m_Value: 35
+    m_Value: 36
   tint:
     m_OverrideState: 1
     m_Value: 0
@@ -687,19 +687,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5e1dc532bcb41949b58bc4f2abfbb7e, type: 3}
   m_Name: LensDistortion
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   intensity:
     m_OverrideState: 1
-    m_Value: -0.08
+    m_Value: -0.27
   xMultiplier:
     m_OverrideState: 1
-    m_Value: 0.422
+    m_Value: 0.59
   yMultiplier:
     m_OverrideState: 1
-    m_Value: 0.654
+    m_Value: 1
   center:
-    m_OverrideState: 1
-    m_Value: {x: 4.45, y: 3.82}
+    m_OverrideState: 0
+    m_Value: {x: 0.5, y: 0.5}
   scale:
-    m_OverrideState: 1
-    m_Value: 1.96
+    m_OverrideState: 0
+    m_Value: 1

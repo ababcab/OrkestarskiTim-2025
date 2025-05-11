@@ -53,7 +53,7 @@ public class MouseRaycaster : MonoBehaviour
         else
         {
             //Debug.DrawLine(ray.origin, ray.origin + distance * ray.direction, Color.red, Time.deltaTime * 40f);
-            //Debug.Log($"Didnt hit anything valid");
+            Debug.Log($"Didnt hit anything valid");
         }
     }
 }
