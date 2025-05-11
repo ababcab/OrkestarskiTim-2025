@@ -97,12 +97,12 @@ public class EventTile : MonoBehaviour,IMouseSelectable
                 throw new System.Exception("Nisi implementovao BoxCast all");
                 Instantiate(bakine_kiflice_prefab, this.transform.position, Quaternion.identity);
             }
-            else if (dropdown.GetComponent<GetValueFromDropdown>().selectedOption == "Himna")
+            else if (selected == "Himna")
             {   
                 throw new System.Exception("Nisi implementovao BoxCast all");
                 Instantiate(himna_prefab, this.transform.position, Quaternion.identity);
             }
-            else if (dropdown.GetComponent<GetValueFromDropdown>().selectedOption == "Fejk indeksi")
+            else if (selected == "Fejk indeksi")
             {   
                 throw new System.Exception("Nisi implementovao BoxCast all");
                 Instantiate(fejkIndeksi_prefab, this.transform.position, Quaternion.identity);
