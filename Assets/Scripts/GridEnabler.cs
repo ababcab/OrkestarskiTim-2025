@@ -22,7 +22,7 @@ public class GridEnabler : MonoBehaviour
             dropdown.GetComponent<GetValueFromDropdown>().selectedOption == "Fejk indeksi")
         {
             bigGrid.SetActive(true);
-           // smallGrid.SetActive(false);
+            //smallGrid.SetActive(false);
         }
     }
 }
