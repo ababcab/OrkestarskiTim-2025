@@ -10,6 +10,12 @@ public class GameLogic : MonoBehaviour
     [SerializeField]
     private Plata plata;
 
+    [Header("UI")]
+    [SerializeField]
+    private TMPro.TextMeshProUGUI timer;
+    [SerializeField]
+    private TMPro.TextMeshProUGUI sredstva;
+
     [Header("Caci")]
     [SerializeField]
     private Transform parentOfCaci;
@@ -32,6 +38,7 @@ public class GameLogic : MonoBehaviour
     private float protestTime = 20;
     [SerializeField]
     private float timeLeft = 0;
+    private float timeLeftRound;
 
 
 
@@ -63,7 +70,10 @@ public class GameLogic : MonoBehaviour
         while (timeLeft > 0)
         {
             yield return new WaitForSeconds(tickRate);
-            timeLeft -= tickRate;
+            RoundTime();
+            if (timeLeftRound <= 5)
+                TimerColor();
+            timer.SetText("Priprema: " + timeLeftRound);
         }
         timeLeft = 0;
         currentCoroutine = null;
@@ -99,7 +109,8 @@ public class GameLogic : MonoBehaviour
 
             }
             
-            timeLeft -= tickRate;
+            RoundTime();
+            timer.SetText("Protest: " + timeLeftRound);
         }
 
         studentTickCount = 0;
@@ -170,10 +181,10 @@ public class GameLogic : MonoBehaviour
         for(int i=0;i<amount;i++)
         {
             //Caci @new = new Caci();
-            Caci @new = caciPool.GetObject().GetComponent<Caci>();
+            /*Caci @new = caciPool.GetObject().GetComponent<Caci>();
             @new.SetSO(caciScrObjs[0]);
             @new.SetUp(parentOfCaci);
-            caci.Add(@new);
+            caci.Add(@new);*/
         }
     }
 
@@ -183,5 +194,18 @@ public class GameLogic : MonoBehaviour
         //IncreaseCaci(20);
     }
 
+    private void RoundTime()
+    {
+        timeLeft -= tickRate;
+        timeLeftRound = timeLeft;
+        timeLeftRound = Mathf.Round(timeLeftRound);
+    }
 
+    private void TimerColor()
+    {
+        if (timeLeftRound <= timeLeft)
+            timer.color = new Color32(255, 0, 0, 255);
+        else
+            timer.color = new Color32(255, 255, 255, 255);
+    }
 }

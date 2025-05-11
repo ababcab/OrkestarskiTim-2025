@@ -67,7 +67,15 @@ public class EventTile : MonoBehaviour,IMouseSelectable
         string selected = dropdown.GetComponent<GetValueFromDropdown>().selectedOption;
         if (selected == "Rostilj" ||
             selected == "Zurka" ||
-            selected == "Kiflice")
+            selected == "Kiflice" ||
+            selected == "Himna" ||
+            selected == "Fejk indeksi")
+
+        if (dropdown.GetComponent<GetValueFromDropdown>().selectedOption == "Rostilj" ||
+            dropdown.GetComponent<GetValueFromDropdown>().selectedOption == "Zurka" ||
+            dropdown.GetComponent<GetValueFromDropdown>().selectedOption == "Kiflice" ||
+            dropdown.GetComponent<GetValueFromDropdown>().selectedOption == "Himna" ||
+            dropdown.GetComponent<GetValueFromDropdown>().selectedOption == "Fejk indeksi")
         {
             this.gameObject.GetComponent<MeshRenderer>().enabled = true;
         }
@@ -81,6 +89,7 @@ public class EventTile : MonoBehaviour,IMouseSelectable
 
             if (selected == "Rostilj" && CastBox(4))
             {
+                throw new System.Exception("Nisi implementovao BoxCast all");
                 Instantiate(rostilj_prefab, this.transform.position, Quaternion.identity);
                 PlaySound(volModifier1, rostiljClip, 0);
                 PlaySound(volModifier2, rostiljSizzle, 5);
@@ -95,6 +104,16 @@ public class EventTile : MonoBehaviour,IMouseSelectable
             {
                 throw new System.Exception("Nisi implementovao BoxCast all");
                 Instantiate(bakine_kiflice_prefab, this.transform.position, Quaternion.identity);
+            }
+            else if (selected == "Himna")
+            {   
+                throw new System.Exception("Nisi implementovao BoxCast all");
+                Instantiate(himna_prefab, this.transform.position, Quaternion.identity);
+            }
+            else if (selected == "Fejk indeksi")
+            {   
+                throw new System.Exception("Nisi implementovao BoxCast all");
+                Instantiate(fejkIndeksi_prefab, this.transform.position, Quaternion.identity);
             }
 
             //placeBigTile;
@@ -111,7 +130,14 @@ public class EventTile : MonoBehaviour,IMouseSelectable
         string selected = dropdown.GetComponent<GetValueFromDropdown>().selectedOption;
         if (selected == "Rostilj" ||
             selected == "Zurka" ||
-            selected == "Kiflice")
+            selected == "Kiflice" ||
+            selected == "Himna" ||
+            selected == "Fejk indeksi")
+        if (dropdown.GetComponent<GetValueFromDropdown>().selectedOption == "Rostilj" ||
+            dropdown.GetComponent<GetValueFromDropdown>().selectedOption == "Zurka" ||
+            dropdown.GetComponent<GetValueFromDropdown>().selectedOption == "Kiflice" ||
+            dropdown.GetComponent<GetValueFromDropdown>().selectedOption == "Himna" ||
+            dropdown.GetComponent<GetValueFromDropdown>().selectedOption == "Fejk indeksi")
         {
             this.gameObject.GetComponent<MeshRenderer>().enabled = false;
         }
