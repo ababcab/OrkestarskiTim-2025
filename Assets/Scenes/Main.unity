@@ -367,13 +367,7 @@ MonoBehaviour:
     - m_Text: Rostilj
       m_Image: {fileID: 0}
       m_Color: {r: 1, g: 1, b: 1, a: 1}
-    - m_Text: Zurka
-      m_Image: {fileID: 0}
-      m_Color: {r: 1, g: 1, b: 1, a: 1}
     - m_Text: Kiflice
-      m_Image: {fileID: 0}
-      m_Color: {r: 1, g: 1, b: 1, a: 1}
-    - m_Text: Himna
       m_Image: {fileID: 0}
       m_Color: {r: 1, g: 1, b: 1, a: 1}
     - m_Text: Fejk indeksi
@@ -2669,6 +2663,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 7362137620535359293, guid: 10adb07c2e094cb428eaaf51b5ca9134, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7362137620535359293, guid: 10adb07c2e094cb428eaaf51b5ca9134, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7362137620535359293, guid: 10adb07c2e094cb428eaaf51b5ca9134, type: 3}
       propertyPath: m_LocalPosition.x
       value: -161
       objectReference: {fileID: 0}
@@ -2725,6 +2727,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8199553571726002420, guid: 6366b5142d1f2f7468bd13076f34c729, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8199553571726002420, guid: 6366b5142d1f2f7468bd13076f34c729, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 8199553571726002420, guid: 6366b5142d1f2f7468bd13076f34c729, type: 3}
       propertyPath: m_LocalPosition.x
       value: -132.1
@@ -2949,6 +2959,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 52188260}
     - target: {fileID: 5738829569776029628, guid: b51cea5aac03f0147bbd004a03afeb2c, type: 3}
+      propertyPath: zurkaClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 785decfe8519793448507d3503634211, type: 3}
+    - target: {fileID: 5738829569776029628, guid: b51cea5aac03f0147bbd004a03afeb2c, type: 3}
       propertyPath: parent_grid
       value: 
       objectReference: {fileID: 1705090367}
@@ -2961,6 +2975,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 805784206}
     - target: {fileID: 5738829569776029628, guid: b51cea5aac03f0147bbd004a03afeb2c, type: 3}
+      propertyPath: himna_prefab
+      value: 
+      objectReference: {fileID: 460826190146022266}
+    - target: {fileID: 5738829569776029628, guid: b51cea5aac03f0147bbd004a03afeb2c, type: 3}
       propertyPath: volModifier1
       value: 0.4
       objectReference: {fileID: 0}
@@ -2968,6 +2986,14 @@ PrefabInstance:
       propertyPath: volModifier2
       value: 0.05
       objectReference: {fileID: 0}
+    - target: {fileID: 5738829569776029628, guid: b51cea5aac03f0147bbd004a03afeb2c, type: 3}
+      propertyPath: volModifier3
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5738829569776029628, guid: b51cea5aac03f0147bbd004a03afeb2c, type: 3}
+      propertyPath: zurka_prefab
+      value: 
+      objectReference: {fileID: 5033492009814180857}
     - target: {fileID: 5738829569776029628, guid: b51cea5aac03f0147bbd004a03afeb2c, type: 3}
       propertyPath: rostiljSizzle
       value: 
@@ -2980,6 +3006,14 @@ PrefabInstance:
       propertyPath: masterSoundVolume
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5738829569776029628, guid: b51cea5aac03f0147bbd004a03afeb2c, type: 3}
+      propertyPath: fejkIndeksi_prefab
+      value: 
+      objectReference: {fileID: 5374224105487217153}
+    - target: {fileID: 5738829569776029628, guid: b51cea5aac03f0147bbd004a03afeb2c, type: 3}
+      propertyPath: bakine_kiflice_prefab
+      value: 
+      objectReference: {fileID: 6928139057126172341}
     - target: {fileID: 5846154392800981550, guid: b51cea5aac03f0147bbd004a03afeb2c, type: 3}
       propertyPath: m_Name
       value: EventTile
@@ -3000,6 +3034,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 275985823292755613, guid: e532042490bb12745a91d5db4af911a4, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 275985823292755613, guid: e532042490bb12745a91d5db4af911a4, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 275985823292755613, guid: e532042490bb12745a91d5db4af911a4, type: 3}
       propertyPath: m_LocalPosition.x
       value: -73.1
@@ -3066,6 +3108,26 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3639963922209057094, guid: f2bd63ce9c0d93240b8b450bc025b431, type: 3}
+      propertyPath: dropdown
+      value: 
+      objectReference: {fileID: 52188260}
+    - target: {fileID: 3639963922209057094, guid: f2bd63ce9c0d93240b8b450bc025b431, type: 3}
+      propertyPath: parent_grid
+      value: 
+      objectReference: {fileID: 892633933}
+    - target: {fileID: 3639963922209057094, guid: f2bd63ce9c0d93240b8b450bc025b431, type: 3}
+      propertyPath: soundSource
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3639963922209057094, guid: f2bd63ce9c0d93240b8b450bc025b431, type: 3}
+      propertyPath: volModifier
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3639963922209057094, guid: f2bd63ce9c0d93240b8b450bc025b431, type: 3}
+      propertyPath: sator_prefab
+      value: 
+      objectReference: {fileID: 823403017}
     - target: {fileID: 7826108393276797554, guid: f2bd63ce9c0d93240b8b450bc025b431, type: 3}
       propertyPath: m_Name
       value: Tile
@@ -3170,7 +3232,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5356373644525198953, guid: f2bd63ce9c0d93240b8b450bc025b431, type: 3}
+    - {fileID: 3639963922209057094, guid: f2bd63ce9c0d93240b8b450bc025b431, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -3207,6 +3271,7 @@ MonoBehaviour:
   dropdown: {fileID: 52188260}
   sator_prefab: {fileID: 823403017}
   parent_grid: {fileID: 892633933}
+  eventDuration: 20
   plata: {fileID: 0}
   soundSource: {fileID: 6976559177305164864}
   masterSoundVolume: 1
@@ -3320,6 +3385,14 @@ PrefabInstance:
     - target: {fileID: 3934213840157987687, guid: a0c942b93905c7743ab1c0778a47d627, type: 3}
       propertyPath: m_Name
       value: kiflice_temp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7162566294515088293, guid: a0c942b93905c7743ab1c0778a47d627, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7162566294515088293, guid: a0c942b93905c7743ab1c0778a47d627, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 7162566294515088293, guid: a0c942b93905c7743ab1c0778a47d627, type: 3}
       propertyPath: m_LocalPosition.x

@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 public class Tile : MonoBehaviour, IMouseSelectable
 {
@@ -8,13 +10,19 @@ public class Tile : MonoBehaviour, IMouseSelectable
     public GameObject parent_grid;
 
     [SerializeField]
+    private float eventDuration;
+    [SerializeField]
     private Plata plata;
+
+    private GameObject placedObject = null;
 
     public AudioSource soundSource;
     public float masterSoundVolume = 1;
     public AudioClip satorClip;
     [Range(0f, 1f)]
     public float volModifier;
+
+    private Vector3 halfExtents_sator = Vector3.one;
 
     void Start()
     {
@@ -59,10 +67,9 @@ public class Tile : MonoBehaviour, IMouseSelectable
     {
         if (Input.GetMouseButtonDown(0) && zauzeto == false)
         {
-
             if (dropdown.GetComponent<GetValueFromDropdown>().selectedOption == "Sator")
             {
-                if (!plata.EnoughMoney())
+                if (!plata.EnoughMoney(10))
                  return false;
                 //placeSator();
                 //lose money
@@ -70,8 +77,12 @@ public class Tile : MonoBehaviour, IMouseSelectable
                 Debug.Log("place sator");
                 zauzeto = true;
 
-                GameObject new_sator = Instantiate(sator_prefab, this.transform.position, Quaternion.identity);
-                new_sator.GetComponent<Placement>().parentTile = this;
+
+                placedObject = Instantiate(sator_prefab, this.transform.position, Quaternion.identity);
+
+                
+                //placedObject.GetComponent<Placement>().parentTile = this;
+                StartCoroutine(DeleteAfter(eventDuration, halfExtents_sator, 1));
                 PlaySound(volModifier, satorClip);
             
             }
@@ -99,4 +110,11 @@ public class Tile : MonoBehaviour, IMouseSelectable
         Debug.Log($"{gameObject} got info from {returnInfo}");
     }
 
+    IEnumerator DeleteAfter(float time, Vector3 halfExtents, int needToHit)
+    {
+        yield return new WaitForSeconds(time);
+        placedObject.SetActive(false);
+        Debug.Log($"I disabled {placedObject.name}");
+        this.zauzeto = false;
+    }
 }

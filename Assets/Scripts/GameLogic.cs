@@ -66,7 +66,7 @@ public class GameLogic : MonoBehaviour
 
     IEnumerator Preparation()
     {
-        plata.AddMoney(100);
+        plata.AddMoney(10);
 
         IncreaseCaci(newCaciAfterProtest);
 
@@ -182,8 +182,6 @@ public class GameLogic : MonoBehaviour
 
     private void DetermineNewEvent()
     {
-
-
         Debug.Log($"Survived protest");
 
         StartCoroutine(Preparation());
