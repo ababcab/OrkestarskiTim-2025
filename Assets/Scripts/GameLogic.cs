@@ -50,7 +50,6 @@ public class GameLogic : MonoBehaviour
         StartPreparation();
     }
 
-    
     private void StartPreparation()
     {
         if (currentCoroutine == null)
@@ -80,9 +79,6 @@ public class GameLogic : MonoBehaviour
         currentCoroutine = null;
         StartProtest();
     }
-
-
-
 
     private void StartProtest()
     {

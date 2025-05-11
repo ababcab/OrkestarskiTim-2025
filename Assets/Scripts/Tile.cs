@@ -10,16 +10,18 @@ public class Tile : MonoBehaviour, IMouseSelectable
     [SerializeField]
     private Plata plata;
 
+    public AudioSource soundSource;
+    public float masterSoundVolume = 1;
+    public AudioClip satorClip;
+    [Range(0f, 1f)]
+    public float volModifier;
 
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         this.gameObject.GetComponent<MeshRenderer>().enabled = false;
         Debug.Log($"bruh {GameObject.Find("Game Logic")}");
         plata = GameObject.Find("Game Logic").GetComponent<Plata>();
     }
-
 
     public void IndirectMouseEnter()
     {
@@ -36,7 +38,6 @@ public class Tile : MonoBehaviour, IMouseSelectable
         _OnMouseOver();
     }
 
-    
     private void _OnMouseEnter()
     {
         //highlight
@@ -63,6 +64,7 @@ public class Tile : MonoBehaviour, IMouseSelectable
 
                 GameObject new_sator = Instantiate(sator_prefab, this.transform.position, Quaternion.identity);
                 new_sator.GetComponent<Placement>().parentTile = this;
+                PlaySound(volModifier, satorClip);
             } 
         }
     }
@@ -74,5 +76,11 @@ public class Tile : MonoBehaviour, IMouseSelectable
             this.gameObject.GetComponent<MeshRenderer>().enabled = false;
         }
     }
-    
+
+    private void PlaySound(float volModifier, AudioClip myClip)
+    {
+        soundSource.clip = myClip;
+        soundSource.volume = masterSoundVolume * volModifier;
+        soundSource.Play();
+    }
 }
