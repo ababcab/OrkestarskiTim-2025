@@ -28,7 +28,13 @@ public class GameLogic : MonoBehaviour
 
     [Header("Studenti")]
     [SerializeField]
-    private int studenti = 0;
+    private GameObject parentOfStudenti;
+    [SerializeField]
+    private int studenti = 10;
+    [SerializeField]
+    private int studentsInNextProtest = 0;
+
+
     [Header("Round params")]
     [SerializeField]
     private float tickRate = 0.1f;
@@ -64,7 +70,6 @@ public class GameLogic : MonoBehaviour
 
         IncreaseCaci(newCaciAfterProtest);
 
-
         yield return new WaitForEndOfFrame();
         timeLeft = preparationTime;
         while (timeLeft > 0)
@@ -90,8 +95,8 @@ public class GameLogic : MonoBehaviour
 
     IEnumerator Protest()
     {
-
-        studenti = Random.Range(0, 20);
+        studenti = studentsInNextProtest;
+        parentOfStudenti.GetComponent<StudentSpawner>().SpawnStudents(studenti, protestTime);
 
         yield return new WaitForSeconds(tickRate);
         timeLeft = protestTime;
@@ -113,6 +118,9 @@ public class GameLogic : MonoBehaviour
             timer.SetText("Protest: " + timeLeftRound);
         }
 
+
+        studentsInNextProtest += 10;
+        parentOfStudenti.GetComponent<StudentSpawner>().DespawnStudents();
         studentTickCount = 0;
         timeLeft = 0;
         currentCoroutine = null;
