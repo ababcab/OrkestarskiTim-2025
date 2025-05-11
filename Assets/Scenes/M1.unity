@@ -183,6 +183,10 @@ PrefabInstance:
       value: Sator2 (4)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: d070b9608b4eeb74aa9ac1522a1e59d3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d070b9608b4eeb74aa9ac1522a1e59d3, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -2102,6 +2106,10 @@ PrefabInstance:
       value: Sator2 (2)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: d070b9608b4eeb74aa9ac1522a1e59d3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d070b9608b4eeb74aa9ac1522a1e59d3, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -2182,6 +2190,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: d070b9608b4eeb74aa9ac1522a1e59d3, type: 3}
       propertyPath: m_Name
       value: Sator2 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d070b9608b4eeb74aa9ac1522a1e59d3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: d070b9608b4eeb74aa9ac1522a1e59d3, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -2826,6 +2838,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 9013d95fe7c37a24f8a757384fabe256, type: 3}
       propertyPath: m_Name
       value: Sator1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9013d95fe7c37a24f8a757384fabe256, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 9013d95fe7c37a24f8a757384fabe256, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -3629,6 +3645,10 @@ PrefabInstance:
       value: Sator2
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: d070b9608b4eeb74aa9ac1522a1e59d3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d070b9608b4eeb74aa9ac1522a1e59d3, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -3797,6 +3817,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 9013d95fe7c37a24f8a757384fabe256, type: 3}
       propertyPath: m_Name
       value: Sator1 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9013d95fe7c37a24f8a757384fabe256, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 9013d95fe7c37a24f8a757384fabe256, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -4641,6 +4665,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: d070b9608b4eeb74aa9ac1522a1e59d3, type: 3}
       propertyPath: m_Name
       value: Sator2 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d070b9608b4eeb74aa9ac1522a1e59d3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: d070b9608b4eeb74aa9ac1522a1e59d3, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -6332,6 +6360,10 @@ PrefabInstance:
       value: Sator2 (5)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: d070b9608b4eeb74aa9ac1522a1e59d3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d070b9608b4eeb74aa9ac1522a1e59d3, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -6898,7 +6930,7 @@ PrefabInstance:
     - target: {fileID: 5738829569776029628, guid: b51cea5aac03f0147bbd004a03afeb2c, type: 3}
       propertyPath: rostilj_prefab
       value: 
-      objectReference: {fileID: 6027118526273446234, guid: 5741e21a0aa316c4eb6ac4ec1c556253, type: 3}
+      objectReference: {fileID: 919132149155446097, guid: 886f9b2fa39bf3e499e9afcc42d635da, type: 3}
     - target: {fileID: 5738829569776029628, guid: b51cea5aac03f0147bbd004a03afeb2c, type: 3}
       propertyPath: masterSoundVolume
       value: 1
@@ -6906,11 +6938,11 @@ PrefabInstance:
     - target: {fileID: 5738829569776029628, guid: b51cea5aac03f0147bbd004a03afeb2c, type: 3}
       propertyPath: fejkIndeksi_prefab
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 919132149155446097, guid: f1861155e386d394f889333ac2affcdc, type: 3}
     - target: {fileID: 5738829569776029628, guid: b51cea5aac03f0147bbd004a03afeb2c, type: 3}
       propertyPath: bakine_kiflice_prefab
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 919132149155446097, guid: f4abd045b9b305649aebab32a428be0b, type: 3}
     - target: {fileID: 5846154392800981550, guid: b51cea5aac03f0147bbd004a03afeb2c, type: 3}
       propertyPath: m_Name
       value: EventTile
