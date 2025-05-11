@@ -10,16 +10,18 @@ public class Tile : MonoBehaviour, IMouseSelectable
     [SerializeField]
     private Plata plata;
 
+    public AudioSource soundSource;
+    public float masterSoundVolume = 1;
+    public AudioClip satorClip;
+    [Range(0f, 1f)]
+    public float volModifier;
 
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         this.gameObject.GetComponent<MeshRenderer>().enabled = false;
         Debug.Log($"bruh {GameObject.Find("Game Logic")}");
         plata = GameObject.Find("Game Logic").GetComponent<Plata>();
     }
-
 
     public void IndirectMouseEnter()
     {
@@ -31,12 +33,19 @@ public class Tile : MonoBehaviour, IMouseSelectable
         _OnMouseExit(); 
     }
 
-    public void IndirectMouseOver()
+    public bool IndirectMouseOver()
     {
-        _OnMouseOver();
+        return _OnMouseOver();
     }
 
-    
+
+    public GameObject GetGameObject()
+    {
+        return gameObject;
+    }
+
+
+
     private void _OnMouseEnter()
     {
         //highlight
@@ -46,15 +55,15 @@ public class Tile : MonoBehaviour, IMouseSelectable
         }
     }
 
-    private void _OnMouseOver()
+    private bool _OnMouseOver()
     {
         if (Input.GetMouseButtonDown(0) && zauzeto == false)
         {
 
             if (dropdown.GetComponent<GetValueFromDropdown>().selectedOption == "Sator")
             {
-            if (!plata.EnoughMoney())
-                return;
+                if (!plata.EnoughMoney())
+                 return false;
                 //placeSator();
                 //lose money
                 //+cacije
@@ -63,8 +72,12 @@ public class Tile : MonoBehaviour, IMouseSelectable
 
                 GameObject new_sator = Instantiate(sator_prefab, this.transform.position, Quaternion.identity);
                 new_sator.GetComponent<Placement>().parentTile = this;
+                PlaySound(volModifier, satorClip);
             } 
+            }
+            //return true;
         }
+        return false;
     }
 
     private void _OnMouseExit()
@@ -74,5 +87,16 @@ public class Tile : MonoBehaviour, IMouseSelectable
             this.gameObject.GetComponent<MeshRenderer>().enabled = false;
         }
     }
-    
+
+    private void PlaySound(float volModifier, AudioClip myClip)
+    {
+        soundSource.clip = myClip;
+        soundSource.volume = masterSoundVolume * volModifier;
+        soundSource.Play();
+    }
+    public void IndirectMouseClickedWhileSelected(IMouseSelectable returnInfo)
+    {
+        Debug.Log($"{gameObject} got info from {returnInfo}");
+    }
+
 }
