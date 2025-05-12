@@ -19,7 +19,9 @@ public class GameLogic : MonoBehaviour
 
     [Header("UI")]
     [SerializeField]
-    private TMPro.TextMeshProUGUI timer;
+    private TextMeshProUGUI timer;
+    [SerializeField]
+    private TextMeshProUGUI timer_broj;
 
     [Header("Caci")]
     [SerializeField]
@@ -93,7 +95,8 @@ public class GameLogic : MonoBehaviour
             RoundTime();
             if (timeLeftRound <= 5)
                 TimerColor();
-            timer.SetText("Priprema: " + timeLeftRound);
+            timer.SetText("Priprema");
+            timer_broj.SetText(timeLeftRound.ToString());
         }
         timeLeft = 0;
         currentCoroutine = null;
@@ -130,7 +133,8 @@ public class GameLogic : MonoBehaviour
             }
             
             RoundTime();
-            timer.SetText("Protest: " + timeLeftRound);
+            timer.SetText("Protest");
+            timer_broj.SetText(timeLeftRound.ToString());
         }
 
         studentSpawner.EndProtest();
@@ -256,8 +260,8 @@ public class GameLogic : MonoBehaviour
     private void TimerColor()
     {
         if (timeLeftRound <= timeLeft)
-            timer.color = new Color32(255, 0, 0, 255);
+            timer_broj.color = new Color32(255, 0, 0, 255);
         else
-            timer.color = new Color32(255, 255, 255, 255);
+            timer_broj.color = new Color32(255, 255, 255, 255);
     }
 }
