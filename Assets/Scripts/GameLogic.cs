@@ -54,8 +54,6 @@ public class GameLogic : MonoBehaviour
     private float timeLeft = 0;
     private float timeLeftRound;
 
-
-
     private Coroutine currentCoroutine = null;
 
     private void Start()
