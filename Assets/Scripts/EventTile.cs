@@ -76,10 +76,6 @@ public class EventTile : MonoBehaviour,IMouseSelectable
         if (selected == "Rostilj" ||
             selected == "Kiflice" ||
             selected == "Fejk indeksi")
-
-        if (dropdown.GetComponent<GetValueFromDropdown>().selectedOption == "Rostilj" ||
-            dropdown.GetComponent<GetValueFromDropdown>().selectedOption == "Kiflice" ||
-            dropdown.GetComponent<GetValueFromDropdown>().selectedOption == "Fejk indeksi")
         {
             this.gameObject.GetComponent<MeshRenderer>().enabled = true;
         }
@@ -144,11 +140,6 @@ public class EventTile : MonoBehaviour,IMouseSelectable
             selected == "Kiflice" ||
             selected == "Himna" ||
             selected == "Fejk indeksi")
-        if (dropdown.GetComponent<GetValueFromDropdown>().selectedOption == "Rostilj" ||
-            dropdown.GetComponent<GetValueFromDropdown>().selectedOption == "Zurka" ||
-            dropdown.GetComponent<GetValueFromDropdown>().selectedOption == "Kiflice" ||
-            dropdown.GetComponent<GetValueFromDropdown>().selectedOption == "Himna" ||
-            dropdown.GetComponent<GetValueFromDropdown>().selectedOption == "Fejk indeksi")
         {
             this.gameObject.GetComponent<MeshRenderer>().enabled = false;
         }

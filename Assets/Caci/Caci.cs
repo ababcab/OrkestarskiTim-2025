@@ -1,6 +1,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.InputSystem.Android;
 
 public class Caci : MonoBehaviour, IPoolableObject
 {
@@ -64,6 +65,8 @@ public class Caci : MonoBehaviour, IPoolableObject
         if( Random.Range(0, 100f) > loyalty + bonusLoyalty)
         {
             agent.SetDestination(pathFinding.GetEscapeRoute());
+            animator.SetBool("Walk", false);
+            animator.SetBool("Idle", false);
             animator.SetBool("Run",true);
             scaredShitless++;
             return true;
@@ -79,10 +82,24 @@ public class Caci : MonoBehaviour, IPoolableObject
         agent.destination = destination;
         animator.SetBool("Walk", true);
     }
-
-    public bool GoToDestination(float deltaTime)
+    private float speedInWhichIdle = 1f;
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns>True if scared shitless. When shitless, it shouldnt update animations</returns>
+    public bool AnimationWithRegardsToAnimationUpdate()
     {
         //Debug.Log($"{agent.remainingDistance} {agent.stoppingDistance}");
+        if(agent.velocity.sqrMagnitude > speedInWhichIdle* speedInWhichIdle && animator.GetBool("Walk")==false)
+        {
+            animator.SetBool("Walk", true);
+            animator.SetBool("Idle", false);
+        }
+        else
+        {
+            animator.SetBool("Walk", false);
+            animator.SetBool("Idle", true);
+        }
 
         if (scaredShitless > 0)
         {
@@ -94,6 +111,16 @@ public class Caci : MonoBehaviour, IPoolableObject
         }
         else if (agent.remainingDistance <= agent.stoppingDistance)
         {
+            if (agent.velocity.sqrMagnitude > speedInWhichIdle * speedInWhichIdle && animator.GetBool("Walk") == false)
+            {
+                animator.SetBool("Walk", true);
+                animator.SetBool("Idle", false);
+            }
+            else
+            {
+                animator.SetBool("Walk", false);
+                animator.SetBool("Idle", true);
+            }
             NewDestination();
         }
         return false;

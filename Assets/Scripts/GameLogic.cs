@@ -118,7 +118,7 @@ public class GameLogic : MonoBehaviour
         while(timeLeft > 0)
         {
             StudentTick();
-            CaciDestinationTick();
+            AnimationAndDestinationTick();
 
             if (caci.Count != 0)
                 yield return new WaitForSeconds(tickRate);
@@ -194,7 +194,7 @@ public class GameLogic : MonoBehaviour
 ;
     }
 
-    private void CaciDestinationTick()
+    private void AnimationAndDestinationTick()
     {
         int before = caci.Count;
         int n = caci.Count;
@@ -202,7 +202,7 @@ public class GameLogic : MonoBehaviour
         for (int i = 0; i < n; i++)
         {
             item = caci[i];
-            if(item.GoToDestination(tickRate))
+            if(item.AnimationWithRegardsToAnimationUpdate())
             {
                 caci.RemoveAt(i);
                 //caciPool.ReturnObject(item.gameObject);
@@ -210,6 +210,21 @@ public class GameLogic : MonoBehaviour
                 i--;
             }
         }
+        throw new System.Exception("Need to update student animator in code!!!!!11");
+        /*
+        var studenti;
+        int studenti_count = studenti.Count;
+        var Student;
+        for (int i = 0; i < studenti_count; i++)
+        {
+            Student = caci[i];
+            if (Student.AnimationWithRegardsToAnimationUpdate())
+            {
+
+            }
+        }
+
+        */
         Debug.Log($"Student Tick: Deleted Caci {-caci.Count + before}");
     }
 
