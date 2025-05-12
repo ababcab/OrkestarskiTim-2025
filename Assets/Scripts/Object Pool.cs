@@ -1,6 +1,8 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem.Users;
+using UnityEngine.UI;
 
 public class ObjectPool : MonoBehaviour
 {
@@ -13,10 +15,10 @@ public class ObjectPool : MonoBehaviour
     public int count;
     public int head = 0;
     public int inUse = 0;
-
+    [SerializeField]
+    private Slider inUse_slider;
 
     public List<GameObject> pool;
-
 
     private void Awake()
     {
@@ -30,6 +32,11 @@ public class ObjectPool : MonoBehaviour
         }
     }
     private bool correctly = false;
+
+    private void Update()
+    {
+        inUse_slider.value = inUse;
+    }
 
     public GameObject GetObject(bool setActive = true)
     {
