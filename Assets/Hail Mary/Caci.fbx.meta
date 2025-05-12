@@ -63,7 +63,7 @@ ModelImporter:
       name: run aaaaaa caci
       takeName: caci run
       internalID: -3965596652593688572
-      firstFrame: 0
+      firstFrame: 1
       lastFrame: 23
       wrapMode: 0
       orientationOffsetY: 0
@@ -92,7 +92,7 @@ ModelImporter:
       name: Caci walk
       takeName: Caci walk
       internalID: 3427158111443725904
-      firstFrame: 0
+      firstFrame: 1
       lastFrame: 33
       wrapMode: 0
       orientationOffsetY: 0
