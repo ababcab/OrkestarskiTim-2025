@@ -36,11 +36,11 @@ public class ObjectPool : MonoBehaviour
         }
     }
     private bool correctly = false;
-
+    /*
     private void Update()
     {
         inUse_slider.value = inUse;
-    }
+    }*/
 
     public GameObject GetObject(bool setActive = true)
     {
