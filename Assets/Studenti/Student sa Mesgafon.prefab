@@ -48,6 +48,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -4564512051355844353, guid: d68c60c1a4ec34b4fbb807e5e1faf7e0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4564512051355844353, guid: d68c60c1a4ec34b4fbb807e5e1faf7e0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: d68c60c1a4ec34b4fbb807e5e1faf7e0, type: 3}
       propertyPath: m_Name
       value: Student sa Mesgafon
