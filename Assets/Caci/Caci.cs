@@ -103,7 +103,7 @@ public class Caci : MonoBehaviour, IPoolableObject
 
         if (scaredShitless > 0)
         {
-            if (agent.remainingDistance <= 2)
+            if (agent.remainingDistance <= 10)
             {
                 ReturnToPool();
                 return true;
