@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
@@ -35,6 +36,7 @@ public class GameLogic : MonoBehaviour
     [Header("Studenti")]
     [SerializeField]
     private GameObject parentOfStudenti;
+    private StudentSpawner studentSpawner;
     [SerializeField]
     private int studenti = 10;
     [SerializeField]
@@ -60,6 +62,7 @@ public class GameLogic : MonoBehaviour
     {
         caci = new List<Caci>();
         dropdown = GameObject.Find("Dropdown").GetComponent<TMP_Dropdown>();
+        studentSpawner = parentOfStudenti.GetComponent<StudentSpawner>();
         plata.AddMoney(40);
         StartPreparation();
     }
@@ -83,7 +86,6 @@ public class GameLogic : MonoBehaviour
 
         IncreaseCaci(num_sator* caci_in_sator - caci.Count);
 
-        //IncreaseCaci(newCaciAfterProtest);
 
         yield return new WaitForEndOfFrame();
         timeLeft = preparationTime;
@@ -111,7 +113,7 @@ public class GameLogic : MonoBehaviour
     IEnumerator Protest()
     {
         studenti = studentsInNextProtest;
-        parentOfStudenti.GetComponent<StudentSpawner>().StudentSpawnerCoroutine(studenti, protestTime);
+        studentSpawner.StudentSpawnerCoroutine(studenti, protestTime);
 
         yield return new WaitForSeconds(tickRate);
         timeLeft = protestTime;
@@ -133,14 +135,16 @@ public class GameLogic : MonoBehaviour
             timer.SetText("Protest: " + timeLeftRound);
         }
 
-
+        studentSpawner.EndProtest();
         studentsInNextProtest += 10;
-        parentOfStudenti.GetComponent<StudentSpawner>().DespawnStudents();
+        studentSpawner.DespawnStudents();
         studentTickCount = 0;
         timeLeft = 0;
         currentCoroutine = null;
         DetermineNewEvent();
     }
+
+    #region Sator
     private int num_sator = 0;
     private int caci_in_sator = 5;
     public void ChangeSator(int change)
@@ -151,12 +155,13 @@ public class GameLogic : MonoBehaviour
             {
                 gameStarted = true;
                 dropdown = GameObject.Find("Dropdown").GetComponent<TMP_Dropdown>();
-                Debug.Log($"{dropdown} {GameObject.Find("Dropdown")}");
+                //Debug.Log($"{dropdown} {GameObject.Find("Dropdown")}");
                 dropdown.interactable = true;
             }
             num_sator+= change;
         }
     }
+    #endregion
 
     private void GameOver()
     {
@@ -202,7 +207,7 @@ public class GameLogic : MonoBehaviour
         for (int i = 0; i < n; i++)
         {
             item = caci[i];
-            if(item.AnimationWithRegardsToAnimationUpdate())
+            if(item.AnimationWithRegardsToVelocityUpdate())
             {
                 caci.RemoveAt(i);
                 //caciPool.ReturnObject(item.gameObject);
@@ -210,21 +215,10 @@ public class GameLogic : MonoBehaviour
                 i--;
             }
         }
-        throw new System.Exception("Need to update student animator in code!!!!!11");
-        /*
-        var studenti;
-        int studenti_count = studenti.Count;
-        var Student;
-        for (int i = 0; i < studenti_count; i++)
-        {
-            Student = caci[i];
-            if (Student.AnimationWithRegardsToAnimationUpdate())
-            {
+        //throw new System.Exception("Need to update student animator in code!!!!!11");
+        
 
-            }
-        }
-
-        */
+        
         Debug.Log($"Student Tick: Deleted Caci {-caci.Count + before}");
     }
 

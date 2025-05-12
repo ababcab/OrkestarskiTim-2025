@@ -10,6 +10,8 @@ public class ObjectPool : MonoBehaviour
     [SerializeField]
     public GameObject prefab;
     [SerializeField]
+    public List<GameObject> listOfPrefabs;
+    [SerializeField]
     public int count;
     public int head = 0;
     public int inUse = 0;
@@ -20,10 +22,12 @@ public class ObjectPool : MonoBehaviour
 
     private void Awake()
     {
+        int prefabs = listOfPrefabs.Count;
         GameObject @object;
         for(int i=0;i<count; i++)
         {
-            @object = Instantiate(prefab, parentPool);
+            //@object = Instantiate(prefab, parentPool);
+            @object = Instantiate(listOfPrefabs[Random.Range(0, prefabs)], parentPool);
             @object.SetActive(false);
             @object.name += $" {i}";
             pool.Add(@object);
@@ -37,7 +41,12 @@ public class ObjectPool : MonoBehaviour
         {
             for(int i=0;i<count;i++)
             {
-                pool[i].GetComponent<Caci>().pool = this;
+                try {
+                    pool[i].GetComponent<IPoolableObject>().SetPool(this);
+                }
+                catch {
+                    Debug.Log($" {pool} {i} {pool[i]}");
+                }
             }
             correctly = true;
         }
@@ -48,11 +57,12 @@ public class ObjectPool : MonoBehaviour
         else
         {
             GameObject gO = pool[head];
+            gO.transform.parent = null;
 
             head++;
             head %= count;
             inUse++;
-
+            
             if (setActive)
                 gO.SetActive(true);
             return gO;

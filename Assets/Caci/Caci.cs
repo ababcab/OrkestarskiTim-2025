@@ -46,7 +46,7 @@ public class Caci : MonoBehaviour, IPoolableObject
         loyalty = SO.baseLoyalty;
         speed = SO.baseSpeed;
         transform.parent = parent;
-        transform.localPosition = Vector3.zero;
+        //transform.localPosition = Vector3.zero;
         pathFinding = GameObject.FindWithTag("Path Finding").GetComponent<PathFinding>();
         NewDestination();
     }
@@ -65,9 +65,9 @@ public class Caci : MonoBehaviour, IPoolableObject
         if( Random.Range(0, 100f) > loyalty + bonusLoyalty)
         {
             agent.SetDestination(pathFinding.GetEscapeRoute());
+            animator.SetBool("Run", true);
             animator.SetBool("Walk", false);
             animator.SetBool("Idle", false);
-            animator.SetBool("Run",true);
             scaredShitless++;
             return true;
         }
@@ -87,7 +87,7 @@ public class Caci : MonoBehaviour, IPoolableObject
     /// 
     /// </summary>
     /// <returns>True if scared shitless. When shitless, it shouldnt update animations</returns>
-    public bool AnimationWithRegardsToAnimationUpdate()
+    public bool AnimationWithRegardsToVelocityUpdate()
     {
         //Debug.Log($"{agent.remainingDistance} {agent.stoppingDistance}");
         if(agent.velocity.sqrMagnitude > speedInWhichIdle* speedInWhichIdle && animator.GetBool("Walk")==false)
@@ -97,8 +97,8 @@ public class Caci : MonoBehaviour, IPoolableObject
         }
         else
         {
-            animator.SetBool("Walk", false);
             animator.SetBool("Idle", true);
+            animator.SetBool("Walk", false);
         }
 
         if (scaredShitless > 0)
@@ -118,8 +118,8 @@ public class Caci : MonoBehaviour, IPoolableObject
             }
             else
             {
-                animator.SetBool("Walk", false);
                 animator.SetBool("Idle", true);
+                animator.SetBool("Walk", false);
             }
             NewDestination();
         }
@@ -129,5 +129,10 @@ public class Caci : MonoBehaviour, IPoolableObject
     {
         Debug.Log($"trying to return to pool {gameObject.name}");
         pool.ReturnObject(gameObject);
+    }
+
+    public void SetPool(ObjectPool parentPool)
+    {
+        pool = parentPool;
     }
 }

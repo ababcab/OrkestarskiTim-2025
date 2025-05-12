@@ -1,16 +1,22 @@
 using UnityEngine;
+using UnityEngine.AI;
 
-public class Student : MonoBehaviour
+public class Student : MonoBehaviour, IPoolableObject
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField]
+    public NavMeshAgent agent;
+    [SerializeField]
+    public Animator animator;
+
+    private ObjectPool pool = null;
+
+    public void ReturnToPool()
     {
-        
+        pool.ReturnObject(gameObject);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SetPool(ObjectPool parentPool)
     {
-        
+        pool = parentPool;
     }
 }
