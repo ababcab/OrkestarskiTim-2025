@@ -90,12 +90,12 @@ public class Caci : MonoBehaviour, IPoolableObject
     public bool AnimationWithRegardsToVelocityUpdate()
     {
         //Debug.Log($"{agent.remainingDistance} {agent.stoppingDistance}");
-        if(agent.velocity.sqrMagnitude > speedInWhichIdle* speedInWhichIdle && animator.GetBool("Walk")==false)
+        if(agent.velocity.sqrMagnitude >= speedInWhichIdle* speedInWhichIdle && animator.GetBool("Walk")==false)
         {
             animator.SetBool("Walk", true);
             animator.SetBool("Idle", false);
         }
-        else
+        else if (agent.velocity.sqrMagnitude < speedInWhichIdle * speedInWhichIdle && animator.GetBool("Idle") == false)
         {
             animator.SetBool("Idle", true);
             animator.SetBool("Walk", false);
@@ -111,12 +111,12 @@ public class Caci : MonoBehaviour, IPoolableObject
         }
         else if (agent.remainingDistance <= agent.stoppingDistance)
         {
-            if (agent.velocity.sqrMagnitude > speedInWhichIdle * speedInWhichIdle && animator.GetBool("Walk") == false)
+            if (agent.velocity.sqrMagnitude >= speedInWhichIdle * speedInWhichIdle && animator.GetBool("Walk") == false)
             {
                 animator.SetBool("Walk", true);
                 animator.SetBool("Idle", false);
             }
-            else
+            else if (agent.velocity.sqrMagnitude < speedInWhichIdle * speedInWhichIdle && animator.GetBool("Idle") == false)
             {
                 animator.SetBool("Idle", true);
                 animator.SetBool("Walk", false);

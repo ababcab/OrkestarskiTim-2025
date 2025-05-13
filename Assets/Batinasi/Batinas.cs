@@ -7,9 +7,11 @@ public class Batinas : MonoBehaviour, IMouseSelectable
     [SerializeField]
     private BatinasScrObj SO;
 
-    [Header("Batinas Agent")]
+    [Header("Batinas Refs")]
     [SerializeField]
     private NavMeshAgent agent;
+    [SerializeField]
+    private Animator animator;
 
 
     private int layerMask;
@@ -17,8 +19,22 @@ public class Batinas : MonoBehaviour, IMouseSelectable
     {
         layerMask = ~(1 << LayerMask.NameToLayer("Batinas") | 1 << LayerMask.NameToLayer("Caci"));
     }
+    private float speedInWhichIdle = 0.25f;
 
+    private void Update()
+    {
+        if (agent.velocity.sqrMagnitude >= speedInWhichIdle * speedInWhichIdle && animator.GetBool("Walk") == false)
+        {
+            animator.SetBool("Walk", true);
+            animator.SetBool("Idle", false);
+        }
+        else if(agent.velocity.sqrMagnitude < speedInWhichIdle * speedInWhichIdle && animator.GetBool("Idle") == false)
+        {
+            animator.SetBool("Idle", true);
+            animator.SetBool("Walk", false);
+        }
 
+    }
 
     private void OnTriggerEnter(Collider other)
     {
