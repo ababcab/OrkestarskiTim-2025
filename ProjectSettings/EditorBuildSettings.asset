@@ -26,6 +26,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/OBS1.unity
     guid: 540e8a6026bd0ac4ca865b6583ad6842
+  - enabled: 1
+    path: Assets/Scenes/Katalog Tutorijal.unity
+    guid: c910abf408a20744f9296bfc8aa872d6
+  - enabled: 1
+    path: Assets/Scenes/bogdan scenes/M1_b.unity
+    guid: ccf95ebb6487eda408b6cf3e6ac8b10e
+  - enabled: 1
+    path: Assets/Scenes/bogdan scenes/OBS1_b.unity
+    guid: 1f247519923b4584e91c99876ca4da37
+  - enabled: 1
+    path: Assets/Scenes/bogdan scenes/SS1_b.unity
+    guid: 006c4bfafe9dae545b8993781f0b2509
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
