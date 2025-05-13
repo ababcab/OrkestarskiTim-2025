@@ -22,7 +22,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 450898060799128660, guid: 19005ded44317a9479cf5dde1f90617e, type: 3}
+  m_Motion: {fileID: -8660744235397701626, guid: fb879e610619ac747839aff7e0da5e5f, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -75,7 +75,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7786702315389532858, guid: 19005ded44317a9479cf5dde1f90617e, type: 3}
+  m_Motion: {fileID: -1593425211797815955, guid: fb879e610619ac747839aff7e0da5e5f, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -128,7 +128,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -2815217685386566070, guid: 19005ded44317a9479cf5dde1f90617e, type: 3}
+  m_Motion: {fileID: -4945385903485801933, guid: fb879e610619ac747839aff7e0da5e5f, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -193,7 +193,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Transparent Controller
+  m_Name: UI_Basic Student Controller
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: Jump
@@ -212,7 +212,7 @@ AnimatorController:
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
-    m_DefaultBool: 0
+    m_DefaultBool: 1
     m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5

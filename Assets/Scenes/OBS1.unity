@@ -5042,7 +5042,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 409075735
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -6842,6 +6842,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 29a624b3b3540d24d9f1a007a87fcb94, type: 3}
       propertyPath: m_Name
       value: UstaLow
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 29a624b3b3540d24d9f1a007a87fcb94, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
