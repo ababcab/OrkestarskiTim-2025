@@ -21,6 +21,9 @@ EditorBuildSettings:
     path: Assets/Scenes/LevelLoader.unity
     guid: 1ece431f73ed32a478b7d82a5da9192b
   - enabled: 1
+    path: Assets/Scenes/Cutscene.unity
+    guid: fbc1a0412861339458c1a98a3eb337cd
+  - enabled: 1
     path: Assets/Scenes/SS1.unity
     guid: b7ee65bd106a8ac4d87c0fe95d949613
   - enabled: 1
