@@ -50,6 +50,7 @@ public class StudentSpawner : MonoBehaviour
 
         if (protestOn)
         {
+            Debug.Log($"passed {passedTime} wait {waitTillLeave} full: {protestTime}");
             if(passedTime < spawnTime)
             {
                 for (int j = spawnedStudents; j < numberOfStudents; j++)
@@ -126,7 +127,7 @@ public class StudentSpawner : MonoBehaviour
         protestOn = true;
         this.protestTime = protestTime;
         spawnTime = protestTime * 0.1f;
-        waitTillLeave = protestTime - 5f;
+        waitTillLeave = protestTime - 4f;
         if (waitTillLeave <= 0)
             throw new System.Exception($"Protest time is too short {protestTime} {waitTillLeave}");
         passedTime = 0;

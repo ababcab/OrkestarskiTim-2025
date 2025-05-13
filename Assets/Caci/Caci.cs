@@ -79,8 +79,9 @@ public class Caci : MonoBehaviour, IPoolableObject
         Debug.DrawLine(destination, destination + Vector3.up * 7,Color.red, Time.deltaTime*2000);
         agent.destination = destination;
         animator.SetBool("Walk", true);
+        animator.SetBool("Idle", false);
     }
-    private float speedInWhichIdle = 1f;
+    private float speedInWhichIdle = 0.25f;
     /// <summary>
     /// 
     /// </summary>
