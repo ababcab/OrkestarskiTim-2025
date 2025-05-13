@@ -29,6 +29,8 @@ MonoBehaviour:
   - m_enabled: 1
     m_path: Assets/Scenes/LevelLoader.unity
   - m_enabled: 1
+    m_path: Assets/Scenes/Cutscene.unity
+  - m_enabled: 1
     m_path: Assets/Scenes/SS1.unity
   - m_enabled: 1
     m_path: Assets/Scenes/M1.unity

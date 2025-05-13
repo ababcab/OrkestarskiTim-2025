@@ -6,10 +6,14 @@ public class BeginLoadingafterdelay : MonoBehaviour
 {
     public VideoClip video;
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        if (Time.time >= video.length + 2f)
-            SceneManager.LoadScene("Scenes/LevelLoader");
+        SceneManager.LoadScene("Scenes/LevelLoader");
     }
+
+    /*void Update()
+    {
+        if (Time.time >= video.length)
+            SceneManager.LoadScene("Scenes/LevelLoader");
+    }*/
 }
