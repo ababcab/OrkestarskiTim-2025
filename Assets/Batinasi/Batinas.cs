@@ -23,15 +23,19 @@ public class Batinas : MonoBehaviour, IMouseSelectable
 
     private void Update()
     {
+        Debug.Log($"sqrVel{agent.velocity.sqrMagnitude}  speedIdleSqr{speedInWhichIdle * speedInWhichIdle} Walk {animator.GetBool("Walk")} Idle {animator.GetBool("Idle")}");
         if (agent.velocity.sqrMagnitude >= speedInWhichIdle * speedInWhichIdle && animator.GetBool("Walk") == false)
         {
+            //Debug.Log($"sqrVel{agent.velocity.sqrMagnitude}  speedIdleSqr{speedInWhichIdle * speedInWhichIdle} Turning Walk on");
+
             animator.SetBool("Walk", true);
             animator.SetBool("Idle", false);
         }
         else if(agent.velocity.sqrMagnitude < speedInWhichIdle * speedInWhichIdle && animator.GetBool("Idle") == false)
         {
-            animator.SetBool("Walk", true);
-            animator.SetBool("Idle", false);
+            //Debug.Log($"sqrVel{agent.velocity.sqrMagnitude}  speedIdleSqr{speedInWhichIdle * speedInWhichIdle} Turning Idle on");
+            animator.SetBool("Idle", true);
+            animator.SetBool("Walk", false);
         }
 
     }
