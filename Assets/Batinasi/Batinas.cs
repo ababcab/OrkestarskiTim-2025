@@ -9,6 +9,8 @@ public class Batinas : MonoBehaviour, IMouseSelectable
 
     [Header("Batinas Refs")]
     [SerializeField]
+    private SkinnedMeshRenderer strelica;
+    [SerializeField]
     private NavMeshAgent agent;
     [SerializeField]
     private Animator animator;
@@ -88,6 +90,7 @@ public class Batinas : MonoBehaviour, IMouseSelectable
         if (Input.GetMouseButtonDown(0))
         {
             Debug.Log("Clicked on batinas");
+            strelica.enabled = true;
             return true;
         }
         return false;
@@ -104,5 +107,6 @@ public class Batinas : MonoBehaviour, IMouseSelectable
         Debug.Log($"{gameObject.name} was selected; Received info from {info}");
         GameObject gO = info.GetGameObject();
         agent.SetDestination(gO.transform.position);
+        strelica.enabled = false;
     }
 }
