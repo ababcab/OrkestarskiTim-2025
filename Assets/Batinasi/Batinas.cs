@@ -30,8 +30,8 @@ public class Batinas : MonoBehaviour, IMouseSelectable
         }
         else if(agent.velocity.sqrMagnitude < speedInWhichIdle * speedInWhichIdle && animator.GetBool("Idle") == false)
         {
-            animator.SetBool("Idle", true);
-            animator.SetBool("Walk", false);
+            animator.SetBool("Walk", true);
+            animator.SetBool("Idle", false);
         }
 
     }
