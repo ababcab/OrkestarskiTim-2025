@@ -24,7 +24,7 @@ public class StartGame : MonoBehaviour
 
     void TaskOnClicked()
     {
-        SceneManager.LoadScene("Scenes/LevelLoader");
+        SceneManager.LoadScene("Scenes/Cutscene");
     }
 
     private void PlaySound(float volModifier, AudioClip myClip)
