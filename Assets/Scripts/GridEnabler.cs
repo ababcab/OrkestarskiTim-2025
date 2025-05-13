@@ -9,17 +9,18 @@ public class GridEnabler : MonoBehaviour
 
     void Update()
     {
-        if (dropdown.GetComponent<GetValueFromDropdown>().selectedOption == "Sator")
+        string @string = dropdown.GetComponent<GetValueFromDropdown>().selectedOption;
+        if (@string == "Sator")
         {
             //Debug.Log("debug: " + dropdown.GetComponent<GetValueFromDropdown>().selectedOption);
             smallGrid.SetActive(true);
             bigGrid.SetActive(false);
         }
-        else if (dropdown.GetComponent<GetValueFromDropdown>().selectedOption == "Rostilj" ||
-            dropdown.GetComponent<GetValueFromDropdown>().selectedOption == "Zurka" ||
-            dropdown.GetComponent<GetValueFromDropdown>().selectedOption == "Kiflice" ||
-            dropdown.GetComponent<GetValueFromDropdown>().selectedOption == "Himna" ||
-            dropdown.GetComponent<GetValueFromDropdown>().selectedOption == "Fejk indeksi")
+        else if (@string == "Rostilj" ||
+            @string == "Zurka" ||
+            @string == "Kiflice" ||
+            @string == "Himna" ||
+            @string == "F. index")
         {
             bigGrid.SetActive(true);
             //smallGrid.SetActive(false);

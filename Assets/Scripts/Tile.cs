@@ -8,7 +8,7 @@ public class Tile : MonoBehaviour, IMouseSelectable
     public bool zauzeto = false;
     public GameObject dropdown;
     [Header("PRefavs")]
-    public GameObject sator_prefab;
+    public List<GameObject> sator_prefabs;
     public GameObject batinas_prefab;
     public GameObject parent_grid;
     [Header("Costs")]
@@ -88,7 +88,7 @@ public class Tile : MonoBehaviour, IMouseSelectable
                 zauzeto = true;
 
 
-                placedObject = Instantiate(sator_prefab, this.transform.position, Quaternion.identity);
+                placedObject = Instantiate(sator_prefabs[Random.Range(0, sator_prefabs.Count)], this.transform.position, Quaternion.identity);
                 gameLogic.ChangeSator(+1);
                 
                 //placedObject.GetComponent<Placement>().parentTile = this;

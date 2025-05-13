@@ -75,7 +75,7 @@ public class EventTile : MonoBehaviour,IMouseSelectable
         string selected = dropdown.GetComponent<GetValueFromDropdown>().selectedOption;
         if (selected == "Rostilj" ||
             selected == "Kiflice" ||
-            selected == "Fejk indeksi")
+            selected == "F. index")
         {
             this.gameObject.GetComponent<MeshRenderer>().enabled = true;
         }
@@ -113,7 +113,7 @@ public class EventTile : MonoBehaviour,IMouseSelectable
                 PlaySound(volModifier1, placementClip, 0);
                 StartCoroutine(DeleteAfter(eventDuration, halfExtents_rostilj, 4));
             }
-            else if (selected == "Fejk indeksi" && CastBox_Occupy(halfExtents_rostilj, 4))
+            else if (selected == "F. index" && CastBox_Occupy(halfExtents_rostilj, 4))
             {
                 if (!plata.EnoughMoney(25))
                     return false;
@@ -139,7 +139,7 @@ public class EventTile : MonoBehaviour,IMouseSelectable
             selected == "Zurka" ||
             selected == "Kiflice" ||
             selected == "Himna" ||
-            selected == "Fejk indeksi")
+            selected == "F. index")
         {
             this.gameObject.GetComponent<MeshRenderer>().enabled = false;
         }

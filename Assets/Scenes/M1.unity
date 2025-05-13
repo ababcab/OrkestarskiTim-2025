@@ -6431,7 +6431,7 @@ PrefabInstance:
     - target: {fileID: 5738829569776029628, guid: b51cea5aac03f0147bbd004a03afeb2c, type: 3}
       propertyPath: rostilj_prefab
       value: 
-      objectReference: {fileID: 919132149155446097, guid: 886f9b2fa39bf3e499e9afcc42d635da, type: 3}
+      objectReference: {fileID: 4070803349621789763, guid: a81fd136820cd6740b01b5b1d705df36, type: 3}
     - target: {fileID: 5738829569776029628, guid: b51cea5aac03f0147bbd004a03afeb2c, type: 3}
       propertyPath: masterSoundVolume
       value: 1
@@ -6439,11 +6439,11 @@ PrefabInstance:
     - target: {fileID: 5738829569776029628, guid: b51cea5aac03f0147bbd004a03afeb2c, type: 3}
       propertyPath: fejkIndeksi_prefab
       value: 
-      objectReference: {fileID: 919132149155446097, guid: f1861155e386d394f889333ac2affcdc, type: 3}
+      objectReference: {fileID: 4102974361216936486, guid: fb05111563dafb04f89b3244ad299f79, type: 3}
     - target: {fileID: 5738829569776029628, guid: b51cea5aac03f0147bbd004a03afeb2c, type: 3}
       propertyPath: bakine_kiflice_prefab
       value: 
-      objectReference: {fileID: 919132149155446097, guid: f4abd045b9b305649aebab32a428be0b, type: 3}
+      objectReference: {fileID: 7347809934722005315, guid: 37a77913aeb9b1f4fabf9355be9c4eb2, type: 3}
     - target: {fileID: 5846154392800981550, guid: b51cea5aac03f0147bbd004a03afeb2c, type: 3}
       propertyPath: m_Name
       value: EventTile
@@ -6609,7 +6609,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   zauzeto: 0
   dropdown: {fileID: 52188260}
-  sator_prefab: {fileID: 919132149155446097, guid: 9013d95fe7c37a24f8a757384fabe256, type: 3}
+  sator_prefabs:
+  - {fileID: 2141835854590432780, guid: 5697fce18a52503458259d987d019244, type: 3}
+  - {fileID: 7907081350876033880, guid: 3ab1296d839b5d14480b0e66a14eaaad, type: 3}
   batinas_prefab: {fileID: 2515548271020169625, guid: c437160990976eb428287333d1fdb2dc, type: 3}
   parent_grid: {fileID: 892633933}
   sator_cost: 10
