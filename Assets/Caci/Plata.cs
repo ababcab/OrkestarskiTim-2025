@@ -25,6 +25,6 @@ public class Plata : MonoBehaviour
 
     private void Update()
     {
-        money_text.SetText("Sredstva: " + money);
+        money_text.SetText(money.ToString());
     }
 }
