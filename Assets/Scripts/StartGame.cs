@@ -24,7 +24,10 @@ public class StartGame : MonoBehaviour
 
     void TaskOnClicked()
     {
-        SceneManager.LoadScene("Scenes/Cutscene");
+        if(Application.platform == RuntimePlatform.WebGLPlayer)
+            SceneManager.LoadScene("Scenes/LevelLoader"); // ovo je za web build
+        else
+            SceneManager.LoadScene("Scenes/Cutscene"); // ovo je za windows build
     }
 
     private void PlaySound(float volModifier, AudioClip myClip)
