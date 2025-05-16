@@ -16,6 +16,10 @@ public class GameLogic : MonoBehaviour
     private TMP_Dropdown dropdown;
     [SerializeField]
     private GameObject endScreen;
+    [SerializeField]
+    private GameObject endButton1;
+    [SerializeField]
+    private GameObject endButton2;
 
     [Header("UI")]
     [SerializeField]
@@ -172,6 +176,8 @@ public class GameLogic : MonoBehaviour
         Debug.Log("Game end");
 
         endScreen.SetActive(true);
+        endButton1.SetActive(true);
+        endButton2.SetActive(true);
     }
 
     int studentTickCount = 0;
